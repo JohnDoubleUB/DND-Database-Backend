@@ -31,9 +31,6 @@ public class PlayerCharacters {
     private int baseProficiency;
 
 
-    //"svgthr_str", "svgthr_dex", "svgthr_con", "svgthr_int", "svgthr_wis", "svgthr_cha"
-    //Saving throws
-
     public Long getId() {
         return id;
     }
