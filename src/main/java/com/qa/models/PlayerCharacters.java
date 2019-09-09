@@ -7,9 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Characters {
+public class PlayerCharacters {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     //Basic  stats
     private String name;
@@ -17,10 +18,6 @@ public class Characters {
     private String playerClass;
     private String alignment;
     private String background;
-
-    //Longer descriptors
-    private String otherProfsAndLangs;
-    private String featuresAndTraits;
 
     //Base number stats
     private int level;
@@ -36,13 +33,22 @@ public class Characters {
 
     //"svgthr_str", "svgthr_dex", "svgthr_con", "svgthr_int", "svgthr_wis", "svgthr_cha"
     //Saving throws
-    private boolean svthrStr;
-    private boolean svthrDex;
-    private boolean svthrCon;
-    private boolean svthrInt;
-    private boolean svthrWis;
-    private boolean svthrCha;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+//    public SavingThrows getSavingThrows() {
+//        return savingThrows;
+//    }
+//
+//    public void setSavingThrows(SavingThrows savingThrows) {
+//        this.savingThrows = savingThrows;
+//    }
 
     public String getName() {
         return name;
@@ -82,22 +88,6 @@ public class Characters {
 
     public void setBackground(String background) {
         this.background = background;
-    }
-
-    public String getOtherProfsAndLangs() {
-        return otherProfsAndLangs;
-    }
-
-    public void setOtherProfsAndLangs(String otherProfsAndLangs) {
-        this.otherProfsAndLangs = otherProfsAndLangs;
-    }
-
-    public String getFeaturesAndTraits() {
-        return featuresAndTraits;
-    }
-
-    public void setFeaturesAndTraits(String featuresAndTraits) {
-        this.featuresAndTraits = featuresAndTraits;
     }
 
     public int getLevel() {
