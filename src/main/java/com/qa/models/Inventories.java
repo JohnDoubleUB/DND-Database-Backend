@@ -10,8 +10,10 @@ import javax.persistence.Id;
 public class Inventories {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     //Currency
+    private int playerId;
     private int copperPiece;
     private int silverPiece;
     private int goldPiece;
@@ -20,6 +22,21 @@ public class Inventories {
     //Inventory
     private String equipment;
 
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public int getCopperPiece() {
         return copperPiece;

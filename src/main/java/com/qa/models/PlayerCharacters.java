@@ -42,14 +42,6 @@ public class PlayerCharacters {
         this.id = id;
     }
 
-//    public SavingThrows getSavingThrows() {
-//        return savingThrows;
-//    }
-//
-//    public void setSavingThrows(SavingThrows savingThrows) {
-//        this.savingThrows = savingThrows;
-//    }
-
     public String getName() {
         return name;
     }

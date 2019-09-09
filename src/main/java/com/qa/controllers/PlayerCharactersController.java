@@ -39,4 +39,14 @@ public class PlayerCharactersController {
         repository.delete(existing);
         return existing;
     }
+
+    //Update Character
+    @RequestMapping(value = "characters/{id}", method = RequestMethod.PUT)
+    public PlayerCharacters updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacters player){
+        PlayerCharacters existing = repository.findOne(id);
+        existing = player;
+        return repository.saveAndFlush(existing);
+    }
+
+
 }
