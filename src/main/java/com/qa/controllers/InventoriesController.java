@@ -52,7 +52,6 @@ public class InventoriesController {
     }
 
 
-
     //Delete a singular inventory by id
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.DELETE)
     public Inventories deleteInventories(@PathVariable Long id){
