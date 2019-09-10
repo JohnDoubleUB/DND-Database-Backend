@@ -171,6 +171,9 @@ public class InventoriesControllerTest {
 
         when(repository.findOne(2L)).thenReturn(inv2);
         when(repository.findOne(1L)).thenReturn(inv);
+        when(repository.saveAndFlush(inv2)).thenReturn(inv2);
+        when(repository.saveAndFlush(inv)).thenReturn(inv);
+
 
         assertEquals(inventoriesController.updateInventory(2L, inv).getEquipment(), "A Big box");
         assertEquals(inventoriesController.updateInventory(2L, inv).getId(), 2L);
@@ -181,7 +184,7 @@ public class InventoriesControllerTest {
         inv2.setEquipment("A Small box");
 
         assertEquals(inventoriesController.updateInventory(1L, inv2).getEquipment(), "A Small box");
-        assertEquals(inventoriesController.updateInventory(1L, inv).getId(), 1L);
+        assertEquals(inventoriesController.updateInventory(1L, inv2).getId(), 1L);
 
     }
 
