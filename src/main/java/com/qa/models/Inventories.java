@@ -13,7 +13,7 @@ public class Inventories {
     private long id;
 
     //Currency
-    private int playerId;
+    private long playerId;
     private int copperPiece;
     private int silverPiece;
     private int goldPiece;
@@ -22,11 +22,11 @@ public class Inventories {
     //Inventory
     private String equipment;
 
-    public int getPlayerId() {
+    public long getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(int playerId) {
+    public void setPlayerId(long playerId) {
         this.playerId = playerId;
     }
 
