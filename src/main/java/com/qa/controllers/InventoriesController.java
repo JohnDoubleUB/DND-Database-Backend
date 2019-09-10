@@ -89,9 +89,9 @@ public class InventoriesController {
         existing.setGoldPiece(inventory.getGoldPiece());
         existing.setPlatinumPiece(inventory.getPlatinumPiece());
         existing.setEquipment(inventory.getEquipment());
+        repository.saveAndFlush(existing);
 
-
-        return repository.saveAndFlush(existing);
+        return existing;
     }
 
 

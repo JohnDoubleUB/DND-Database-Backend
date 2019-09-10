@@ -156,12 +156,40 @@ public class InventoriesControllerTest {
 
     @Test
     public void updateInventoryTest(){
+        Inventories inv = new Inventories();
+        inv.setId(1L);
+        inv.setGoldPiece(6);
+        inv.setEquipment("A Big box");
 
+        Inventories inv2 = new Inventories();
+        inv2.setId(2L);
+        inv2.setGoldPiece(5);
+        inv2.setEquipment("A Small box");
+
+
+        when(repository.findOne(anyLong())).thenReturn(inv2);
+        when(repository.saveAndFlush(inv)).thenReturn(inv);
+
+        assertEquals(inventoriesController.updateInventory(1L, inv).getEquipment(), "A Big box");
     }
 
     @Test
     public void updateInventoryByPlayerIdTest(){
+        Inventories inv = new Inventories();
+        inv.setId(1L);
+        inv.setGoldPiece(6);
+        inv.setEquipment("A Big box");
 
+        Inventories inv2 = new Inventories();
+        inv2.setId(2L);
+        inv2.setGoldPiece(5);
+        inv2.setEquipment("A Small box");
+
+
+        when(repository.findOne(anyLong())).thenReturn(inv2);
+        when(repository.saveAndFlush(inv)).thenReturn(inv);
+
+        assertEquals(inventoriesController.updateInventoryByPlayerId(1L, inv).get(0).getEquipment(), "A Big box");
     }
 
 }
