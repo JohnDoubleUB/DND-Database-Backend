@@ -82,13 +82,14 @@ public class InventoriesController {
     //Update Inventories by id
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.PUT)
     public Inventories updateInventory(@PathVariable Long id, @RequestBody Inventories inventory){
-        Inventories existing = repository.findOne(id);
+        Inventories existing = repository.findOne(id); //Returns inv2
 
         existing.setCopperPiece(inventory.getCopperPiece());
         existing.setSilverPiece(inventory.getSilverPiece());
         existing.setGoldPiece(inventory.getGoldPiece());
         existing.setPlatinumPiece(inventory.getPlatinumPiece());
         existing.setEquipment(inventory.getEquipment());
+
         repository.saveAndFlush(existing);
 
         return existing;
@@ -103,13 +104,13 @@ public class InventoriesController {
 
         for(Inventories inv : repository.findAll()){
             if(inv.getPlayerId() == playerId){
-                existingInventories.add(inv);
 
                 inv.setCopperPiece(inventory.getCopperPiece());
                 inv.setSilverPiece(inventory.getSilverPiece());
                 inv.setGoldPiece(inventory.getGoldPiece());
                 inv.setPlatinumPiece(inventory.getPlatinumPiece());
                 inv.setEquipment(inventory.getEquipment());
+                existingInventories.add(inv);
 
                 repository.saveAndFlush(inv);
             }

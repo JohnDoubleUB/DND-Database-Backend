@@ -157,39 +157,63 @@ public class InventoriesControllerTest {
     @Test
     public void updateInventoryTest(){
         Inventories inv = new Inventories();
+        inv.setPlayerId(40L);
         inv.setId(1L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Big box");
 
         Inventories inv2 = new Inventories();
+        inv2.setPlayerId(8L);
         inv2.setId(2L);
         inv2.setGoldPiece(5);
         inv2.setEquipment("A Small box");
 
 
-        when(repository.findOne(anyLong())).thenReturn(inv2);
-        when(repository.saveAndFlush(inv)).thenReturn(inv);
+        when(repository.findOne(2L)).thenReturn(inv2);
+        when(repository.findOne(1L)).thenReturn(inv);
 
-        assertEquals(inventoriesController.updateInventory(1L, inv).getEquipment(), "A Big box");
+        assertEquals(inventoriesController.updateInventory(2L, inv).getEquipment(), "A Big box");
+        assertEquals(inventoriesController.updateInventory(2L, inv).getId(), 2L);
+
+        inv2.setPlayerId(8L);
+        inv2.setId(2L);
+        inv2.setGoldPiece(5);
+        inv2.setEquipment("A Small box");
+
+        assertEquals(inventoriesController.updateInventory(1L, inv2).getEquipment(), "A Small box");
+        assertEquals(inventoriesController.updateInventory(1L, inv).getId(), 1L);
+
     }
 
     @Test
     public void updateInventoryByPlayerIdTest(){
+        List<Inventories> invList = new ArrayList<>();
+
         Inventories inv = new Inventories();
-        inv.setId(1L);
+        inv.setPlayerId(1L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Big box");
 
         Inventories inv2 = new Inventories();
-        inv2.setId(2L);
+        inv2.setId(4L);
+        inv2.setPlayerId(2L);
         inv2.setGoldPiece(5);
         inv2.setEquipment("A Small box");
 
+        Inventories inv3 = new Inventories();
+        inv2.setId(7L);
+        inv3.setPlayerId(2L);
+        inv3.setGoldPiece(5);
+        inv3.setEquipment("A Small box");
 
-        when(repository.findOne(anyLong())).thenReturn(inv2);
-        when(repository.saveAndFlush(inv)).thenReturn(inv);
+        invList.add(inv);
+        invList.add(inv2);
+        invList.add(inv3);
 
-        assertEquals(inventoriesController.updateInventoryByPlayerId(1L, inv).get(0).getEquipment(), "A Big box");
+        when(repository.findAll()).thenReturn(invList);
+
+        assertEquals(inventoriesController.updateInventoryByPlayerId(2L, inv).get(0).getEquipment(), "A Big box");
+        assertEquals(inventoriesController.updateInventoryByPlayerId(2L, inv).get(1).getEquipment(), "A Big box");
     }
 
 }
