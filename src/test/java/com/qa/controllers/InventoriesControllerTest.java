@@ -151,7 +151,7 @@ public class InventoriesControllerTest {
 
         when(repository.findAll()).thenReturn(invList);
         assertEquals(inventoriesController.deleteInventoryByPlayerID(4L).get(0).getEquipment(), "A Bag");
-        assertEquals(inventoriesController.deleteInventoryByPlayerID(2L).get(1).getEquipment(), "What");
+        assertEquals(inventoriesController.deleteInventoryByPlayerID(7L).get(1).getEquipment(), "What");
     }
 
     @Test
