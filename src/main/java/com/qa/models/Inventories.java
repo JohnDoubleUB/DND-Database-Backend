@@ -10,10 +10,10 @@ import javax.persistence.Id;
 public class Inventories {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     //Currency
-    private long playerId;
+    private Long playerId;
     private int copperPiece;
     private int silverPiece;
     private int goldPiece;
@@ -22,19 +22,19 @@ public class Inventories {
     //Inventory
     private String equipment;
 
-    public long getPlayerId() {
+    public Long getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(long playerId) {
+    public void setPlayerId(Long playerId) {
         this.playerId = playerId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

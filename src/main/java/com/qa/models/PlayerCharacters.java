@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class PlayerCharacters {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     //Basic  stats
     private String name;
@@ -31,11 +31,11 @@ public class PlayerCharacters {
     private int baseProficiency;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

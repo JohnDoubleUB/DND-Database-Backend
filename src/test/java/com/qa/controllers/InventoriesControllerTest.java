@@ -46,7 +46,7 @@ public class InventoriesControllerTest {
 
         invList.add(inv);
         when(repository.findAll()).thenReturn(invList);
-        assertEquals(inventoriesController.listAllInventories().get(0).getId(), 1L);
+        assertEquals(inventoriesController.listAllInventories().get(0).getId(), new Long(1L));
         assertEquals(inventoriesController.listAllInventories().get(0).getGoldPiece(), 2);
         assertEquals(inventoriesController.listAllInventories().get(0).getEquipment(), "Big equipment list!");
     }
@@ -60,7 +60,7 @@ public class InventoriesControllerTest {
 
         when(repository.saveAndFlush(inv)).thenReturn(inv);
 
-        assertEquals(inventoriesController.addInventory(inv).getId(),5L);
+        assertEquals(inventoriesController.addInventory(inv).getId(),new Long(5L));
         assertEquals(inventoriesController.addInventory(inv).getEquipment(),"A Bag");
 
 
@@ -176,7 +176,7 @@ public class InventoriesControllerTest {
 
 
         assertEquals(inventoriesController.updateInventory(2L, inv).getEquipment(), "A Big box");
-        assertEquals(inventoriesController.updateInventory(2L, inv).getId(), 2L);
+        assertEquals(inventoriesController.updateInventory(2L, inv).getId(), new Long(2L));
 
         inv2.setPlayerId(8L);
         inv2.setId(2L);
@@ -184,7 +184,7 @@ public class InventoriesControllerTest {
         inv2.setEquipment("A Small box");
 
         assertEquals(inventoriesController.updateInventory(1L, inv2).getEquipment(), "A Small box");
-        assertEquals(inventoriesController.updateInventory(1L, inv2).getId(), 1L);
+        assertEquals(inventoriesController.updateInventory(1L, inv2).getId(), new Long(1L));
 
     }
 
