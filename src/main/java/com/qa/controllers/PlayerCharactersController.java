@@ -3,6 +3,7 @@ package com.qa.controllers;
 import com.qa.models.PlayerCharacters;
 import com.qa.repository.PlayerCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,6 +42,7 @@ public class PlayerCharactersController {
     }
 
     //Update Character by id
+    @Transactional
     @RequestMapping(value = "characters/{id}", method = RequestMethod.PUT)
     public PlayerCharacters updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacters player){
         PlayerCharacters existing = repository.findOne(id);

@@ -4,6 +4,7 @@ package com.qa.controllers;
 import com.qa.models.Inventories;
 import com.qa.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class InventoriesController {
         List<Inventories> existingInventories = new ArrayList<>();
 
         for(Inventories inv : allInventories){
-            if(inv.getPlayerId() == playerId){
+            if(inv.getPlayerId().equals(playerId)){
                 existingInventories.add(inv);
             }
         }
@@ -70,7 +71,7 @@ public class InventoriesController {
         //existingInventories.stream().forEach(repository::delete);
 
         for(Inventories inv : repository.findAll()){
-            if(inv.getPlayerId() == playerId){
+            if(inv.getPlayerId().equals(playerId)){
                 existingInventories.add(inv);
                 repository.delete(inv);
             }
@@ -80,6 +81,7 @@ public class InventoriesController {
     }
 
     //Update Inventories by id
+    @Transactional
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.PUT)
     public Inventories updateInventory(@PathVariable Long id, @RequestBody Inventories inventory){
         Inventories existing = repository.findOne(id); //Returns inv2
@@ -95,13 +97,14 @@ public class InventoriesController {
 
 
     //Update Inventories by playerid
+    @Transactional
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.PUT)
     public List<Inventories> updateInventoryByPlayerId(@PathVariable Long playerId, @RequestBody Inventories inventory){
         List<Inventories> existingInventories = new ArrayList<>();
         //existing.updateAll(inventory);
 
         for(Inventories inv : repository.findAll()){
-            if(inv.getPlayerId() == playerId){
+            if(inv.getPlayerId().equals(playerId)){
 
                 inv.setCopperPiece(inventory.getCopperPiece());
                 inv.setSilverPiece(inventory.getSilverPiece());

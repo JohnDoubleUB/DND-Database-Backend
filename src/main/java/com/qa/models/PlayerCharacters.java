@@ -1,12 +1,10 @@
 package com.qa.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "PlayerCharacters")
 public class PlayerCharacters {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +28,9 @@ public class PlayerCharacters {
     private int baseHP;
     private int baseProficiency;
 
+    public PlayerCharacters(){
+        super();
+    }
 
     public Long getId() {
         return id;

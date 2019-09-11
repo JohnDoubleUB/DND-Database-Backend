@@ -1,12 +1,10 @@
 package com.qa.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Inventories")
 public class Inventories {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +19,10 @@ public class Inventories {
 
     //Inventory
     private String equipment;
+
+    public Inventories(){
+        super();
+    }
 
     public Long getPlayerId() {
         return playerId;
