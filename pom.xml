@@ -94,22 +94,8 @@
           <version>2.22.1</version>
         </plugin>
         <plugin>
-          <!-- Added this too (BELOW) -->
-          <groupId>org.apache.maven.plugins</groupId>
-          <!-- Added this too (ABOVE) -->
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
-          <!-- Added the stuff below to the jar plugin! -->
-          <configuration>
-            <archive>
-              <manifest>
-                <addClasspath>true</addClasspath>
-                <classpathPrefix>lib/</classpathPrefix>
-                <mainClass>com.qa.App</mainClass>
-              </manifest>
-            </archive>
-          </configuration>
-          <!-- Stuff I added to this ends here! -->
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -128,24 +114,6 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-        <!-- This entire plugin was added -->
-        <plugin>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <configuration>
-            <archive>
-              <manifest>
-                <mainClass>fully.qualified.MainClass</mainClass>
-              </manifest>
-            </archive>
-            <descriptorRefs>
-              <descriptorRef>jar-with-dependencies</descriptorRef>
-            </descriptorRefs>
-          </configuration>
-        </plugin>
-
-
-
-
       </plugins>
     </pluginManagement>
   </build>
