@@ -96,6 +96,17 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+          <!-- Added the stuff below to the jar plugin! -->
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>lib/</classpathPrefix>
+                <mainClass>com.qa.App</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+          <!-- Stuff I added to this ends here! -->
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
