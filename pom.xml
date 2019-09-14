@@ -94,6 +94,9 @@
           <version>2.22.1</version>
         </plugin>
         <plugin>
+          <!-- Added this too (BELOW) -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <!-- Added this too (ABOVE) -->
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
           <!-- Added the stuff below to the jar plugin! -->
