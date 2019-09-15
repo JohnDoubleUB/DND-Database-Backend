@@ -47,10 +47,8 @@ public class SeleniumTests {
             Thread.sleep(500);
             URL = driver.getCurrentUrl();
 
+            //Check that each page goes where it is expected to
             assertEquals(URL, pageDir+pages[i]);
         }
     }
-
-
-
 }
