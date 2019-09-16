@@ -7,29 +7,7 @@ containerName=dnddb-container
 
 # Check if the image exists, only build if it does!
 
-if [ "$(docker images -q $imageName)" ]; then
-  #Check if container is already running close if it is!
-  if [ "$(docker ps -q -f name=$containerName)" ]; then
-    if [ ! "$(docker ps -aq -f status=exited -f name=$containerName)" ]; then
-      echo Delete old container...
-      docker rm -f $containerName
-      fi
-  fi
-  echo Run new container...
-  docker run -d -p ${host_port}:${container_port} --name $containerName $imageName
-fi
+docker rm -f $containerName
 
-
-#
-#if [ "$(docker ps -q -f name=$containerName)" ]; then
-#    if [ ! "$(docker ps -aq -f status=exited -f name=$containerName)" ]; then
-#        # cleanup
-#        echo Delete old container...
-#        docker rm -f $containerName
-#    fi
-#fi
-##
-##if [[ "$(docker images -q $imageName 2> /dev/null)" != "" ]]; then
-##  echo Run new container...
-##  docker run -d -p ${host_port}:${container_port} --name $containerName $imageName
-##fi
+echo Run new container...
+docker run -d -p ${host_port}:${container_port} --name $containerName $imageName
