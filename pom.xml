@@ -118,8 +118,6 @@
           <configuration>
             <archive>
               <manifest>
-                <addClasspath>true</addClasspath>
-                <classpathPrefix>lib/</classpathPrefix>
                 <mainClass>com.qa.App</mainClass>
               </manifest>
             </archive>
@@ -147,6 +145,7 @@
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
+
       </plugins>
     </pluginManagement>
   </build>
