@@ -16,31 +16,31 @@ public class PlayerCharacterController {
     @Autowired
     private PlayerCharacterService service;
 
-    //Get all characters - DONE THIS ONE
+    //Get all characters
     @RequestMapping(value = "characters", method = RequestMethod.GET)
     public ResponseEntity<List<PlayerCharacterDto>> getCharacters(){
         return new ResponseEntity<List<PlayerCharacterDto>>(service.getCharacters(), HttpStatus.OK);
     }
 
-    //Add a new character - DONE THIS ONE
+    //Add a new character
     @RequestMapping(value = "characters", method = RequestMethod.POST)
     public ResponseEntity<PlayerCharacterDto> addCharacter(@RequestBody PlayerCharacterDto player){
         return new ResponseEntity<PlayerCharacterDto>(service.addCharacter(player), HttpStatus.CREATED);
     }
 
-    //Get a specific character - DONE THIS ONE
+    //Get a specific character
     @RequestMapping(value = "characters/{id}", method = RequestMethod.GET)
     public ResponseEntity<PlayerCharacterDto> getCharacter(@PathVariable Long id){
         return new ResponseEntity<PlayerCharacterDto>(service.getCharacter(id), HttpStatus.OK);
     }
 
-    //Delete a specific character -- DONE THIS ONE
+    //Delete a specific character
     @RequestMapping(value = "characters/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<PlayerCharacterDto> deleteCharacter(@PathVariable Long id){
         return new ResponseEntity<PlayerCharacterDto>(service.deleteCharacter(id), HttpStatus.ACCEPTED);
     }
 
-    //Update Character by id -- DONE!
+    //Update Character by id
     @RequestMapping(value = "characters/{id}", method = RequestMethod.PUT)
     public ResponseEntity<PlayerCharacterDto> updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacterDto player){
         return new ResponseEntity<PlayerCharacterDto>(service.updateCharacter(id, player), HttpStatus.ACCEPTED);
