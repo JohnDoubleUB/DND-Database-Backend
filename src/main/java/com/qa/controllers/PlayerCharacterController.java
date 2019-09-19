@@ -1,9 +1,10 @@
 package com.qa.controllers;
 
-import com.qa.persistence.models.PlayerCharacter;
-import com.qa.persistence.repository.PlayerCharacterRepository;
+import com.qa.dto.PlayerCharacterDto;
+import com.qa.service.PlayerCharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,58 +14,36 @@ import java.util.List;
 public class PlayerCharacterController {
 
     @Autowired
-    private PlayerCharacterRepository repository;
+    private PlayerCharacterService service;
 
     //Get all characters - DONE THIS ONE
     @RequestMapping(value = "characters", method = RequestMethod.GET)
-    public List<PlayerCharacter> getCharacters(){
-        return repository.findAll();
+    public ResponseEntity<List<PlayerCharacterDto>> getCharacters(){
+        return new ResponseEntity<List<PlayerCharacterDto>>(service.getCharacters(), HttpStatus.OK);
     }
 
     //Add a new character - DONE THIS ONE
     @RequestMapping(value = "characters", method = RequestMethod.POST)
-    public PlayerCharacter addCharacter(@RequestBody PlayerCharacter player){
-        return repository.saveAndFlush(player);
+    public ResponseEntity<PlayerCharacterDto> addCharacter(@RequestBody PlayerCharacterDto player){
+        return new ResponseEntity<PlayerCharacterDto>(service.addCharacter(player), HttpStatus.CREATED);
     }
 
     //Get a specific character - DONE THIS ONE
     @RequestMapping(value = "characters/{id}", method = RequestMethod.GET)
-    public PlayerCharacter getCharacter(@PathVariable Long id){
-//        return repository.findById(id);
-//        return repository.findOne(id);
+    public ResponseEntity<PlayerCharacterDto> getCharacter(@PathVariable Long id){
+        return new ResponseEntity<PlayerCharacterDto>(service.getCharacter(id), HttpStatus.ACCEPTED);
     }
 
     //Delete a specific character -- DONE THIS ONE
     @RequestMapping(value = "characters/{id}", method = RequestMethod.DELETE)
-    public PlayerCharacter deleteCharacter(@PathVariable Long id){
-        PlayerCharacter existing = repository.findOne(id);
-        repository.delete(existing);
-        return existing;
+    public ResponseEntity<PlayerCharacterDto> deleteCharacter(@PathVariable Long id){
+        return new ResponseEntity<PlayerCharacterDto>(service.deleteCharacter(id), HttpStatus.ACCEPTED);
     }
 
     //Update Character by id -- DONE!
-    @Transactional
     @RequestMapping(value = "characters/{id}", method = RequestMethod.PUT)
-    public PlayerCharacter updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacter player){
-        PlayerCharacter existing = repository.findOne(id);
-
-        existing.setName(player.getName());
-        existing.setRace(player.getRace());
-        existing.setPlayerClass(player.getPlayerClass());
-        existing.setAlignment(player.getAlignment());
-        existing.setBackground(player.getBackground());
-        existing.setLevel(player.getLevel());
-        existing.setBaseStr(player.getBaseStr());
-        existing.setBaseInt(player.getBaseInt());
-        existing.setBaseDex(player.getBaseDex());
-        existing.setBaseCon(player.getBaseCon());
-        existing.setBaseWis(player.getBaseWis());
-        existing.setBaseCha(player.getBaseCha());
-        existing.setBaseHP(player.getBaseHP());
-        existing.setBaseProficiency(player.getBaseProficiency());
-
-
-        return repository.saveAndFlush(existing);
+    public ResponseEntity<PlayerCharacterDto> updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacterDto player){
+        return new ResponseEntity<PlayerCharacterDto>(service.updateCharacter(id, player), HttpStatus.ACCEPTED);
     }
 
 
