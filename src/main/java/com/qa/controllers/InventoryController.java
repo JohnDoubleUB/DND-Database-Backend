@@ -1,13 +1,13 @@
 package com.qa.controllers;
 
 
-import com.qa.persistence.models.Inventory;
-import com.qa.persistence.repository.InventoryRepository;
+import com.qa.dto.InventoryDto;
+import com.qa.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,109 +15,56 @@ import java.util.List;
 public class InventoryController {
 
     @Autowired
-    private InventoryRepository repository;
+    private InventoryService service;
 
     //Get all inventories -- DONE
     @RequestMapping(value = "inventories", method = RequestMethod.GET)
-    public List<Inventory> getInventories(){
-        return repository.findAll();
+    public ResponseEntity<List<InventoryDto>> getInventories(){
+        return new ResponseEntity<List<InventoryDto>>(service.getInventories(), HttpStatus.OK);
     }
 
     //Add an inventory -- DONE
     @RequestMapping(value = "inventories", method = RequestMethod.POST)
-    public Inventory addInventory(@RequestBody Inventory inventory){
-        return repository.saveAndFlush(inventory);
+    public ResponseEntity<InventoryDto> addInventory(@RequestBody InventoryDto inventoryDto){
+        return new ResponseEntity<InventoryDto>(service.addInventory(inventoryDto), HttpStatus.CREATED);
     }
 
     //Get a singular inventory -- DONE
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.GET)
-    public Inventory getInventory(@PathVariable Long id){
-        return repository.findOne(id);
+    public ResponseEntity<InventoryDto> getInventory(@PathVariable Long id){
+        return new ResponseEntity<InventoryDto>(service.getInventory(id), HttpStatus.OK);
     }
 
     //Get an inventory by playerId -- DONE
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.GET)
-    public List<Inventory> getInventoryByPlayerID(@PathVariable Long playerId){
-        List<Inventory> allInventories = repository.findAll();
-
-        List<Inventory> existingInventories = new ArrayList<>();
-
-        for(Inventory inv : allInventories){
-            if(inv.getPlayerId().equals(playerId)){
-                existingInventories.add(inv);
-            }
-        }
-
-
-        return existingInventories;
+    public ResponseEntity<List<InventoryDto>> getInventoryByPlayerID(@PathVariable Long playerId){
+        return new ResponseEntity<List<InventoryDto>>(service.getInventoryByPlayerId(playerId), HttpStatus.OK);
     }
 
 
     //Delete a singular inventory by id
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.DELETE)
-    public Inventory deleteInventory(@PathVariable Long id){
-        Inventory existing = repository.findOne(id);
-        repository.delete(existing);
-        return existing;
+    public ResponseEntity<InventoryDto> deleteInventory(@PathVariable Long id){
+        return new ResponseEntity<InventoryDto>(service.deleteInventory(id), HttpStatus.ACCEPTED);
     }
 
     //Delete an inventory by playerId -- DONE
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.DELETE)
-    public List<Inventory> deleteInventoryByPlayerId(@PathVariable Long playerId){
-
-        List<Inventory> existingInventories = new ArrayList<>();
-
-        //List<Inventories> existingInventories = allInventories.stream().filter(i -> i.getPlayerId() == playerId).collect(Collectors.toList());
-        //existingInventories.stream().forEach(repository::delete);
-
-        for(Inventory inv : repository.findAll()){
-            if(inv.getPlayerId().equals(playerId)){
-                existingInventories.add(inv);
-                repository.delete(inv);
-            }
-        }
-
-        return existingInventories;
+    public ResponseEntity<List<InventoryDto>> deleteInventoryByPlayerId(@PathVariable Long playerId){
+        return new ResponseEntity<List<InventoryDto>>(service.deleteInventoryByPlayerId(playerId), HttpStatus.ACCEPTED);
     }
 
     //Update Inventories by id
-    @Transactional
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.PUT)
-    public Inventory updateInventory(@PathVariable Long id, @RequestBody Inventory inventory){
-        Inventory existing = repository.findOne(id); //Returns inv2
-
-        existing.setCopperPiece(inventory.getCopperPiece());
-        existing.setSilverPiece(inventory.getSilverPiece());
-        existing.setGoldPiece(inventory.getGoldPiece());
-        existing.setPlatinumPiece(inventory.getPlatinumPiece());
-        existing.setEquipment(inventory.getEquipment());
-
-        return repository.saveAndFlush(existing);
+    public ResponseEntity<InventoryDto> updateInventory(@PathVariable Long id, @RequestBody InventoryDto inventoryDto){
+        return new ResponseEntity<InventoryDto>(service.updateInventory(id, inventoryDto), HttpStatus.ACCEPTED);
     }
 
 
     //Update Inventories by playerid
-    @Transactional
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.PUT)
-    public List<Inventory> updateInventoryByPlayerId(@PathVariable Long playerId, @RequestBody Inventory inventory){
-        List<Inventory> existingInventories = new ArrayList<>();
-        //existing.updateAll(inventory);
-
-        for(Inventory inv : repository.findAll()){
-            if(inv.getPlayerId().equals(playerId)){
-
-                inv.setCopperPiece(inventory.getCopperPiece());
-                inv.setSilverPiece(inventory.getSilverPiece());
-                inv.setGoldPiece(inventory.getGoldPiece());
-                inv.setPlatinumPiece(inventory.getPlatinumPiece());
-                inv.setEquipment(inventory.getEquipment());
-                existingInventories.add(inv);
-
-                repository.saveAndFlush(inv);
-            }
-        }
-
-        return existingInventories;
+    public ResponseEntity<List<InventoryDto>> updateInventoryByPlayerId(@PathVariable Long playerId, @RequestBody InventoryDto inventoryDto){
+        return new ResponseEntity<List<InventoryDto>>(service.updateInventoryByPlayerId(playerId, inventoryDto), HttpStatus.ACCEPTED);
     }
 
 

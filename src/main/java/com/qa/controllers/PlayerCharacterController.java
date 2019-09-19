@@ -31,7 +31,7 @@ public class PlayerCharacterController {
     //Get a specific character - DONE THIS ONE
     @RequestMapping(value = "characters/{id}", method = RequestMethod.GET)
     public ResponseEntity<PlayerCharacterDto> getCharacter(@PathVariable Long id){
-        return new ResponseEntity<PlayerCharacterDto>(service.getCharacter(id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<PlayerCharacterDto>(service.getCharacter(id), HttpStatus.OK);
     }
 
     //Delete a specific character -- DONE THIS ONE
