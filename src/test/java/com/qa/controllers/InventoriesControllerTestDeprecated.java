@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class InventoriesControllerTest {
+public class InventoriesControllerTestDeprecated {
 //    @InjectMocks
 //    private InventoryController inventoriesController;
 //

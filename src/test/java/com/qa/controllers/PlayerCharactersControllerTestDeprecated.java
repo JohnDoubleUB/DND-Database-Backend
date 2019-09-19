@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PlayerCharactersControllerTest {
+public class PlayerCharactersControllerTestDeprecated {
 
 //    @InjectMocks
 //    private PlayerCharacterController playerCharactersController;
