@@ -1,7 +1,8 @@
-package com.qa;
+package com.qa.mainapp;
 
 import static org.junit.Assert.assertTrue;
 
+import com.qa.App;
 import org.junit.Test;
 
 /**
