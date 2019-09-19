@@ -1,11 +1,11 @@
-package com.qa.models;
+package com.qa.persistence.models;
 
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Inventories")
-public class Inventories {
+public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,7 +20,7 @@ public class Inventories {
     //Inventory
     private String equipment;
 
-    public Inventories(){
+    public Inventory(){
         super();
     }
 
@@ -78,5 +78,10 @@ public class Inventories {
 
     public void setEquipment(String equipment) {
         this.equipment = equipment;
+    }
+
+    // Should be a factory pattern
+    public static Inventory createInventories(){
+        return new Inventory();
     }
 }

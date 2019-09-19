@@ -1,7 +1,7 @@
 package com.qa.controllers;
 
-import com.qa.models.PlayerCharacters;
-import com.qa.repository.PlayerCharacterRepository;
+import com.qa.persistence.models.PlayerCharacter;
+import com.qa.persistence.repository.PlayerCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -10,33 +10,34 @@ import java.util.List;
 
 @RestController
 @CrossOrigin()
-public class PlayerCharactersController {
+public class PlayerCharacterController {
 
     @Autowired
     private PlayerCharacterRepository repository;
 
     //Get all characters
     @RequestMapping(value = "characters", method = RequestMethod.GET)
-    public List<PlayerCharacters> listAllCharacters(){
+    public List<PlayerCharacter> getCharacters(){
         return repository.findAll();
     }
 
     //Add a new character
     @RequestMapping(value = "characters", method = RequestMethod.POST)
-    public PlayerCharacters addCharacter(@RequestBody PlayerCharacters player){
+    public PlayerCharacter addCharacter(@RequestBody PlayerCharacter player){
         return repository.saveAndFlush(player);
     }
 
     //Get a specific character
     @RequestMapping(value = "characters/{id}", method = RequestMethod.GET)
-    public PlayerCharacters getCharacter(@PathVariable Long id){
+    public PlayerCharacter getCharacter(@PathVariable Long id){
+        return repository.findById(id);
         return repository.findOne(id);
     }
 
     //Delete a specific character
     @RequestMapping(value = "characters/{id}", method = RequestMethod.DELETE)
-    public PlayerCharacters deleteCharacter(@PathVariable Long id){
-        PlayerCharacters existing = repository.findOne(id);
+    public PlayerCharacter deleteCharacter(@PathVariable Long id){
+        PlayerCharacter existing = repository.findOne(id);
         repository.delete(existing);
         return existing;
     }
@@ -44,8 +45,8 @@ public class PlayerCharactersController {
     //Update Character by id
     @Transactional
     @RequestMapping(value = "characters/{id}", method = RequestMethod.PUT)
-    public PlayerCharacters updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacters player){
-        PlayerCharacters existing = repository.findOne(id);
+    public PlayerCharacter updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacter player){
+        PlayerCharacter existing = repository.findOne(id);
 
         existing.setName(player.getName());
         existing.setRace(player.getRace());

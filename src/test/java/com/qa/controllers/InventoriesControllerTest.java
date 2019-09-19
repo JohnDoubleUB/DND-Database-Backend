@@ -1,7 +1,7 @@
 package com.qa.controllers;
 
-import com.qa.models.Inventories;
-import com.qa.repository.InventoryRepository;
+import com.qa.persistence.models.Inventory;
+import com.qa.persistence.repository.InventoryRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class InventoriesControllerTest {
     @InjectMocks
-    private InventoriesController inventoriesController;
+    private InventoryController inventoriesController;
 
     @Mock
     private InventoryRepository repository;
@@ -36,8 +36,8 @@ public class InventoriesControllerTest {
 
     @Test
     public void listAllInventoriesTest(){
-        List<Inventories> invList = new ArrayList<>();
-        Inventories inv = new Inventories();
+        List<Inventory> invList = new ArrayList<>();
+        Inventory inv = new Inventory();
 
 
         inv.setId(1L);
@@ -53,7 +53,7 @@ public class InventoriesControllerTest {
 
     @Test
     public void addInventoryTest(){
-        Inventories inv = new Inventories();
+        Inventory inv = new Inventory();
         inv.setId(5L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Bag");
@@ -68,12 +68,12 @@ public class InventoriesControllerTest {
 
     @Test
     public void getInventoryTest(){
-        Inventories inv = new Inventories();
+        Inventory inv = new Inventory();
         inv.setId(5L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Bag");
 
-        Inventories inv2 = new Inventories();
+        Inventory inv2 = new Inventory();
         inv2.setId(8L);
         inv2.setGoldPiece(10);
         inv2.setEquipment("Another Bag");
@@ -85,19 +85,19 @@ public class InventoriesControllerTest {
 
     @Test
     public void getInventoryByPlayerIDTest(){
-        List<Inventories> invList = new ArrayList<>();
-        Inventories inv = new Inventories();
+        List<Inventory> invList = new ArrayList<>();
+        Inventory inv = new Inventory();
         inv.setId(5L);
         inv.setPlayerId(4L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Bag");
 
-        Inventories inv2 = new Inventories();
+        Inventory inv2 = new Inventory();
         inv2.setPlayerId(2L);
         inv2.setGoldPiece(10);
         inv2.setEquipment("Another Bag");
 
-        Inventories inv3 = new Inventories();
+        Inventory inv3 = new Inventory();
         inv3.setPlayerId(2L);
         inv3.setGoldPiece(10);
         inv3.setEquipment("Another Bag 2");
@@ -114,7 +114,7 @@ public class InventoriesControllerTest {
     @Test
     public void deleteInventoriesTest(){
 
-        Inventories inv = new Inventories();
+        Inventory inv = new Inventory();
         inv.setId(21L);
         inv.setPlayerId(2L);
         inv.setGoldPiece(10);
@@ -128,19 +128,19 @@ public class InventoriesControllerTest {
 
     @Test
     public void deleteInventoryByPlayerID(){
-        List<Inventories> invList = new ArrayList<>();
-        Inventories inv = new Inventories();
+        List<Inventory> invList = new ArrayList<>();
+        Inventory inv = new Inventory();
         inv.setId(5L);
         inv.setPlayerId(4L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Bag");
 
-        Inventories inv2 = new Inventories();
+        Inventory inv2 = new Inventory();
         inv2.setPlayerId(7L);
         inv2.setGoldPiece(10);
         inv2.setEquipment("Another Bag");
 
-        Inventories inv3 = new Inventories();
+        Inventory inv3 = new Inventory();
         inv3.setPlayerId(7L);
         inv3.setGoldPiece(10);
         inv3.setEquipment("What");
@@ -156,13 +156,13 @@ public class InventoriesControllerTest {
 
     @Test
     public void updateInventoryTest(){
-        Inventories inv = new Inventories();
+        Inventory inv = new Inventory();
         inv.setPlayerId(40L);
         inv.setId(1L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Big box");
 
-        Inventories inv2 = new Inventories();
+        Inventory inv2 = new Inventory();
         inv2.setPlayerId(8L);
         inv2.setId(2L);
         inv2.setGoldPiece(5);
@@ -190,20 +190,20 @@ public class InventoriesControllerTest {
 
     @Test
     public void updateInventoryByPlayerIdTest(){
-        List<Inventories> invList = new ArrayList<>();
+        List<Inventory> invList = new ArrayList<>();
 
-        Inventories inv = new Inventories();
+        Inventory inv = new Inventory();
         inv.setPlayerId(1L);
         inv.setGoldPiece(6);
         inv.setEquipment("A Big box");
 
-        Inventories inv2 = new Inventories();
+        Inventory inv2 = new Inventory();
         inv2.setId(4L);
         inv2.setPlayerId(2L);
         inv2.setGoldPiece(5);
         inv2.setEquipment("A Small box");
 
-        Inventories inv3 = new Inventories();
+        Inventory inv3 = new Inventory();
         inv2.setId(7L);
         inv3.setPlayerId(2L);
         inv3.setGoldPiece(5);

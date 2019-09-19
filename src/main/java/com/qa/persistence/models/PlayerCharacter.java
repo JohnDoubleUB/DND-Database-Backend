@@ -1,11 +1,11 @@
-package com.qa.models;
+package com.qa.persistence.models;
 
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "PlayerCharacters")
-public class PlayerCharacters {
+public class PlayerCharacter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -28,8 +28,28 @@ public class PlayerCharacters {
     private int baseHP;
     private int baseProficiency;
 
-    public PlayerCharacters(){
+    //15
+    public PlayerCharacter(){
         super();
+    }
+
+    public PlayerCharacter(Long id, String name, String race, String playerClass, String alignment, String background, int level, int baseStr, int baseInt, int baseDex, int baseCon, int baseWis, int baseCha, int baseHP, int baseProficiency){
+        super();
+        this.id = id;
+        this.name = name;
+        this.race = race;
+        this.playerClass = playerClass;
+        this.alignment = alignment;
+        this.background = background;
+        this.level = level;
+        this.baseStr = baseStr;
+        this.baseInt = baseInt;
+        this.baseDex = baseDex;
+        this.baseCon = baseCon;
+        this.baseWis = baseWis;
+        this.baseCha = baseCha;
+        this.baseHP = baseHP;
+        this.baseProficiency = baseProficiency;
     }
 
     public Long getId() {
@@ -150,5 +170,10 @@ public class PlayerCharacters {
 
     public void setBaseProficiency(int baseProficiency) {
         this.baseProficiency = baseProficiency;
+    }
+
+    // Should be a factory pattern
+    public static PlayerCharacter createPlayerCharacter(){
+        return new PlayerCharacter();
     }
 }

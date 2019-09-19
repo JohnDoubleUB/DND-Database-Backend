@@ -1,8 +1,8 @@
 package com.qa.controllers;
 
 
-import com.qa.models.PlayerCharacters;
-import com.qa.repository.PlayerCharacterRepository;
+import com.qa.persistence.models.PlayerCharacter;
+import com.qa.persistence.repository.PlayerCharacterRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 public class PlayerCharactersControllerTest {
 
     @InjectMocks
-    private PlayerCharactersController playerCharactersController;
+    private PlayerCharacterController playerCharactersController;
 
     @Mock
     private PlayerCharacterRepository repository;
@@ -39,13 +39,13 @@ public class PlayerCharactersControllerTest {
 
     @Test
     public void listAllCharactersTest(){
-        List<PlayerCharacters> charList = new ArrayList<>();
+        List<PlayerCharacter> charList = new ArrayList<>();
 
-        PlayerCharacters chara = new PlayerCharacters();
+        PlayerCharacter chara = new PlayerCharacter();
         chara.setName("Bob");
         chara.setId(2L);
 
-        PlayerCharacters chara2 = new PlayerCharacters();
+        PlayerCharacter chara2 = new PlayerCharacter();
         chara2.setName("Joey");
         chara2.setId(4L);
 
@@ -61,7 +61,7 @@ public class PlayerCharactersControllerTest {
 
     @Test
     public void addCharacterTest(){
-        PlayerCharacters chara = new PlayerCharacters();
+        PlayerCharacter chara = new PlayerCharacter();
         chara.setName("Debra");
         chara.setId(5L);
 
@@ -73,7 +73,7 @@ public class PlayerCharactersControllerTest {
 
     @Test
     public void getCharacterTest(){
-        PlayerCharacters chara = new PlayerCharacters();
+        PlayerCharacter chara = new PlayerCharacter();
         chara.setName("Brian");
         chara.setRace("Man");
         chara.setPlayerClass("Monk");
@@ -92,11 +92,11 @@ public class PlayerCharactersControllerTest {
 
     @Test
     public void deleteCharacterTest(){
-        PlayerCharacters chara = new PlayerCharacters();
+        PlayerCharacter chara = new PlayerCharacter();
         chara.setName("Owen");
         chara.setRace("Elf");
 
-        PlayerCharacters chara2 = new PlayerCharacters();
+        PlayerCharacter chara2 = new PlayerCharacter();
         chara2.setName("Stevo");
         chara2.setRace("Orc");
 
@@ -110,12 +110,12 @@ public class PlayerCharactersControllerTest {
 
     @Test
     public void updateCharacterTest(){
-        PlayerCharacters ch1 = new PlayerCharacters();
+        PlayerCharacter ch1 = new PlayerCharacter();
         ch1.setId(1L);
         ch1.setName("bobby");
         ch1.setRace("elf");
 
-        PlayerCharacters ch2 = new PlayerCharacters();
+        PlayerCharacter ch2 = new PlayerCharacter();
         ch2.setId(2L);
         ch2.setName("joey");
         ch2.setRace("orc");
