@@ -24,6 +24,17 @@ public class Inventory {
         super();
     }
 
+    public Inventory(Long id, Long playerId, int copperPiece, int silverPiece, int goldPiece, int platinumPiece, String equipment){
+        super();
+        this.id = id;
+        this.playerId = playerId;
+        this.copperPiece = copperPiece;
+        this.silverPiece = silverPiece;
+        this.goldPiece = goldPiece;
+        this.platinumPiece = platinumPiece;
+        this.equipment = equipment;
+    }
+
     public Long getPlayerId() {
         return playerId;
     }
@@ -81,7 +92,7 @@ public class Inventory {
     }
 
     // Should be a factory pattern
-    public static Inventory createInventories(){
+    public static Inventory createInventory(){
         return new Inventory();
     }
 }

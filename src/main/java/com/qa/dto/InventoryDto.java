@@ -1,5 +1,7 @@
 package com.qa.dto;
 
+import com.qa.persistence.models.Inventory;
+
 public class InventoryDto {
 
     private Long id;
@@ -16,6 +18,27 @@ public class InventoryDto {
 
     public InventoryDto(){
         super();
+    }
+
+    public InventoryDto(Long id, Long playerId, int copperPiece, int silverPiece, int goldPiece, int platinumPiece, String equipment){
+        super();
+        this.id = id;
+        this.playerId = playerId;
+        this.copperPiece = copperPiece;
+        this.silverPiece = silverPiece;
+        this.goldPiece = goldPiece;
+        this.platinumPiece = platinumPiece;
+        this.equipment = equipment;
+    }
+
+    public InventoryDto(Inventory inventory){
+        this.id = inventory.getId();
+        this.playerId = inventory.getPlayerId();
+        this.copperPiece = inventory.getCopperPiece();
+        this.silverPiece = inventory.getSilverPiece();
+        this.goldPiece = inventory.getGoldPiece();
+        this.platinumPiece = inventory.getPlatinumPiece();
+        this.equipment = inventory.getEquipment();
     }
 
     public Long getPlayerId() {

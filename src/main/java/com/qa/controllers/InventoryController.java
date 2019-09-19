@@ -17,25 +17,25 @@ public class InventoryController {
     @Autowired
     private InventoryRepository repository;
 
-    //Get all inventories
+    //Get all inventories -- DONE
     @RequestMapping(value = "inventories", method = RequestMethod.GET)
-    public List<Inventory> listAllInventories(){
+    public List<Inventory> getInventories(){
         return repository.findAll();
     }
 
-    //Add an inventory
+    //Add an inventory -- DONE
     @RequestMapping(value = "inventories", method = RequestMethod.POST)
     public Inventory addInventory(@RequestBody Inventory inventory){
         return repository.saveAndFlush(inventory);
     }
 
-    //Get a singular inventory
+    //Get a singular inventory -- DONE
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.GET)
     public Inventory getInventory(@PathVariable Long id){
         return repository.findOne(id);
     }
 
-    //Get an inventory by playerId
+    //Get an inventory by playerId -- DONE
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.GET)
     public List<Inventory> getInventoryByPlayerID(@PathVariable Long playerId){
         List<Inventory> allInventories = repository.findAll();
@@ -55,15 +55,15 @@ public class InventoryController {
 
     //Delete a singular inventory by id
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.DELETE)
-    public Inventory deleteInventories(@PathVariable Long id){
+    public Inventory deleteInventory(@PathVariable Long id){
         Inventory existing = repository.findOne(id);
         repository.delete(existing);
         return existing;
     }
 
-    //Delete an inventory by playerId
+    //Delete an inventory by playerId -- DONE
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.DELETE)
-    public List<Inventory> deleteInventoryByPlayerID(@PathVariable Long playerId){
+    public List<Inventory> deleteInventoryByPlayerId(@PathVariable Long playerId){
 
         List<Inventory> existingInventories = new ArrayList<>();
 
