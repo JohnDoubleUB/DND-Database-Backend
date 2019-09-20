@@ -73,21 +73,50 @@ public class InventoryControllerTest {
 
     @Test
     public void deleteInventoryTest(){
+        Long id = 4L;
+        InventoryDto inventoryDto = new InventoryDto(4L, 1L, 6, 8, 5, 10,"not much");
 
+        Mockito.when(inventoryService.deleteInventory(id)).thenReturn(inventoryDto);
+
+        assertEquals((Long) 4L, inventoryController.deleteInventory(id).getBody().getId());
+        assertEquals(HttpStatus.ACCEPTED, inventoryController.deleteInventory(id).getStatusCode());
     }
 
     @Test
     public void deleteInventoryByPlayerIdTest(){
+        Long playerId = 2L;
+        List<InventoryDto> inventoriesDto = new ArrayList<InventoryDto>();
+        inventoriesDto.add(new InventoryDto(4L, 2L, 2, 4, 5, 6,"some things"));
+        inventoriesDto.add(new InventoryDto(6L, 1L, 6, 8, 5, 10,"not much"));
 
+        Mockito.when(inventoryService.deleteInventoryByPlayerId(playerId)).thenReturn(inventoriesDto);
+
+        assertEquals((Long) 4L, inventoryController.deleteInventoryByPlayerId(playerId).getBody().get(0).getId());
+        assertEquals(HttpStatus.ACCEPTED, inventoryController.deleteInventoryByPlayerId(playerId).getStatusCode());
     }
 
     @Test
     public void updateInventoryTest(){
+        InventoryDto inventoryDto = new InventoryDto(null, 1L, 6, 8, 5, 10,"not much");
 
+        Mockito.when(inventoryService.updateInventory(2L, inventoryDto)).thenReturn(new InventoryDto(2L, 1L, 6, 8, 5, 10,"not much"));
+
+        assertEquals((Long) 2L, inventoryController.updateInventory(2L, inventoryDto).getBody().getId());
+        assertEquals(HttpStatus.ACCEPTED, inventoryController.updateInventory(2L, inventoryDto).getStatusCode());
     }
 
     @Test
     public void updateInventoryByPlayerIdTest(){
+        InventoryDto inventoryDto = new InventoryDto(null, 2L, 2, 4, 5, 6,"some things");
+
+        List<InventoryDto> inventoriesDto = new ArrayList<InventoryDto>();
+        inventoriesDto.add(new InventoryDto(1L, 2L, 2, 4, 5, 6,"some things"));
+        inventoriesDto.add(new InventoryDto(2L, 2L, 2, 4, 5, 6,"some things"));
+
+        Mockito.when(inventoryService.updateInventoryByPlayerId(2L, inventoryDto)).thenReturn(inventoriesDto);
+
+        assertEquals((Long) 2L, inventoryController.updateInventoryByPlayerId(2L, inventoryDto).getBody().get(0).getPlayerId());
+        assertEquals(HttpStatus.ACCEPTED, inventoryController.updateInventoryByPlayerId(2L, inventoryDto).getStatusCode());
 
     }
 
