@@ -78,112 +78,61 @@ public class PlayerCharacterDto {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getRace() {
         return race;
     }
 
-    public void setRace(String race) {
-        this.race = race;
-    }
 
     public String getPlayerClass() {
         return playerClass;
     }
 
-    public void setPlayerClass(String playerClass) {
-        this.playerClass = playerClass;
-    }
 
     public String getAlignment() {
         return alignment;
     }
 
-    public void setAlignment(String alignment) {
-        this.alignment = alignment;
-    }
 
     public String getBackground() {
         return background;
     }
 
-    public void setBackground(String background) {
-        this.background = background;
-    }
 
     public int getLevel() {
         return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public int getBaseStr() {
         return baseStr;
     }
 
-    public void setBaseStr(int baseStr) {
-        this.baseStr = baseStr;
-    }
-
     public int getBaseInt() {
         return baseInt;
-    }
-
-    public void setBaseInt(int baseInt) {
-        this.baseInt = baseInt;
     }
 
     public int getBaseDex() {
         return baseDex;
     }
 
-    public void setBaseDex(int baseDex) {
-        this.baseDex = baseDex;
-    }
-
     public int getBaseCon() {
         return baseCon;
-    }
-
-    public void setBaseCon(int baseCon) {
-        this.baseCon = baseCon;
     }
 
     public int getBaseWis() {
         return baseWis;
     }
 
-    public void setBaseWis(int baseWis) {
-        this.baseWis = baseWis;
-    }
-
     public int getBaseCha() {
         return baseCha;
-    }
-
-    public void setBaseCha(int baseCha) {
-        this.baseCha = baseCha;
     }
 
     public int getBaseHP() {
         return baseHP;
     }
 
-    public void setBaseHP(int baseHP) {
-        this.baseHP = baseHP;
-    }
-
     public int getBaseProficiency() {
         return baseProficiency;
-    }
-
-    public void setBaseProficiency(int baseProficiency) {
-        this.baseProficiency = baseProficiency;
     }
 
     // Should be a factory pattern

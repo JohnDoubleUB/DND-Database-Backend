@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -55,16 +56,16 @@ public class PlayerCharacterServiceTest {
         assertEquals(playerCharacterDtos.get(0).getBaseProficiency(), playerCharacterService.getCharacters().get(0).getBaseProficiency());
     }
 
-//
-//    @Test
-//    public void addCharacterTest(){
-//        PlayerCharacter playerCharacter = new PlayerCharacter(null, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
-//        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(2L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
-//
-//        Mockito.when(repository.saveAndFlush(playerCharacter)).thenReturn(new PlayerCharacterDto(playerCharacter);
-//
-//        assertEquals(playerCharacter.getId(), playerCharacterService.addCharacter(playerCharacterDto).getId());
-//    }
+
+    @Test
+    public void addCharacterTest(){
+        PlayerCharacter playerCharacter = new PlayerCharacter(null, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(2L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+
+        Mockito.when(repository.saveAndFlush(any())).thenReturn(playerCharacter);
+
+        assertEquals(playerCharacter.getId(), playerCharacterService.addCharacter(playerCharacterDto).getId());
+    }
 
 
     @Test

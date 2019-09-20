@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -46,10 +47,15 @@ public class InventoryServiceTest {
         assertEquals(inventoryDtos.get(1).getEquipment(), inventoryService.getInventories().get(1).getEquipment());
     }
 
-//    @Test
-//    public void addInventoryTest(){
-//
-//    }
+    @Test
+    public void addInventoryTest(){
+
+        Inventory inventory = new Inventory(1L, 2L, 4, 5, 6, 0, "Not much");
+
+        Mockito.when(repository.saveAndFlush(any())).thenReturn(inventory);
+
+        assertEquals("Not much",inventoryService.addInventory(new InventoryDto(inventory)).getEquipment());
+    }
 
     @Test
     public void getInventoryTest(){

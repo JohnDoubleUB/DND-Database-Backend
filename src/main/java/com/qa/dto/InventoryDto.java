@@ -45,10 +45,6 @@ public class InventoryDto {
         return playerId;
     }
 
-    public void setPlayerId(Long playerId) {
-        this.playerId = playerId;
-    }
-
     public Long getId() {
         return id;
     }
@@ -61,40 +57,20 @@ public class InventoryDto {
         return copperPiece;
     }
 
-    public void setCopperPiece(int copperPiece) {
-        this.copperPiece = copperPiece;
-    }
-
     public int getSilverPiece() {
         return silverPiece;
-    }
-
-    public void setSilverPiece(int silverPiece) {
-        this.silverPiece = silverPiece;
     }
 
     public int getGoldPiece() {
         return goldPiece;
     }
 
-    public void setGoldPiece(int goldPiece) {
-        this.goldPiece = goldPiece;
-    }
-
     public int getPlatinumPiece() {
         return platinumPiece;
     }
 
-    public void setPlatinumPiece(int platinumPiece) {
-        this.platinumPiece = platinumPiece;
-    }
-
     public String getEquipment() {
         return equipment;
-    }
-
-    public void setEquipment(String equipment) {
-        this.equipment = equipment;
     }
 
     // Should be a factory pattern
