@@ -40,21 +40,45 @@ public class PlayerCharacterControllerTest {
 
     @Test
     public void addCharacterTest(){
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(4L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+        Mockito.when(playerCharacterService.addCharacter(playerCharacterDto)).thenReturn(new PlayerCharacterDto(4L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 ));
 
+        assertEquals((Long) 4L, playerCharacterController.addCharacter(playerCharacterDto).getBody().getId());
+        assertEquals(HttpStatus.CREATED, playerCharacterController.addCharacter(playerCharacterDto).getStatusCode());
     }
 
     @Test
     public void getCharacterTest(){
+        //return new ResponseEntity<PlayerCharacterDto>(service.getCharacter(id), HttpStatus.OK);
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(6L, "CrowBar", "Kenku", "Bard", "Neutral", "Noble", 4, 10, 14, 15, 12, 10, 30, 22, 4 );
 
+        Mockito.when(playerCharacterService.getCharacter(6L)).thenReturn(playerCharacterDto);
+
+        assertEquals("CrowBar", playerCharacterController.getCharacter(6L).getBody().getName());
+        assertEquals(HttpStatus.OK, playerCharacterController.getCharacter(6L).getStatusCode());
     }
 
     @Test
     public void deleteCharacterTest(){
+        Long id = 4L;
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(4L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+
+        Mockito.when(playerCharacterService.deleteCharacter(id)).thenReturn(playerCharacterDto);
+
+        assertEquals((Long) 4L, playerCharacterController.deleteCharacter(id).getBody().getId());
+        assertEquals(HttpStatus.ACCEPTED, playerCharacterController.deleteCharacter(id).getStatusCode());
+
 
     }
 
     @Test
     public void updateCharacterTest(){
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(4L, "CrowBar", "Kenku", "Bard", "Neutral", "Noble", 4, 10, 14, 15, 12, 10, 30, 22, 4 );
+        Mockito.when(playerCharacterService.updateCharacter(4L, playerCharacterDto)).thenReturn(playerCharacterDto);
+
+        assertEquals((Long) 4L, playerCharacterController.updateCharacter(4L, playerCharacterDto).getBody().getId());
+        assertEquals(HttpStatus.ACCEPTED, playerCharacterController.updateCharacter(4L, playerCharacterDto).getStatusCode());
+
 
     }
 
