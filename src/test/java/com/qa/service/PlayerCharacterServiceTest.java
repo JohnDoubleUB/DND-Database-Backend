@@ -72,26 +72,25 @@ public class PlayerCharacterServiceTest {
         Long id = 1L;
 
         PlayerCharacter playerCharacter = new PlayerCharacter(1L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(playerCharacter);
 
         Mockito.when(repository.getOne(id)).thenReturn(playerCharacter);
 
-        assertEquals(playerCharacter.getId(), playerCharacterService.getCharacter(id).getId());
-
-        assertEquals(playerCharacter.getName(), playerCharacterService.getCharacter(id).getName());
-        assertEquals(playerCharacter.getId(), playerCharacterService.getCharacter(id).getId());
-        assertEquals(playerCharacter.getAlignment(), playerCharacterService.getCharacter(id).getAlignment());
-        assertEquals(playerCharacter.getBackground(), playerCharacterService.getCharacter(id).getBackground());
-        assertEquals(playerCharacter.getPlayerClass(), playerCharacterService.getCharacter(id).getPlayerClass());
-        assertEquals(playerCharacter.getRace(), playerCharacterService.getCharacter(id).getRace());
-        assertEquals(playerCharacter.getLevel(), playerCharacterService.getCharacter(id).getLevel());
-        assertEquals(playerCharacter.getBaseCha(), playerCharacterService.getCharacter(id).getBaseCha());
-        assertEquals(playerCharacter.getBaseStr(), playerCharacterService.getCharacter(id).getBaseStr());
-        assertEquals(playerCharacter.getBaseInt(), playerCharacterService.getCharacter(id).getBaseInt());
-        assertEquals(playerCharacter.getBaseDex(), playerCharacterService.getCharacter(id).getBaseDex());
-        assertEquals(playerCharacter.getBaseCon(), playerCharacterService.getCharacter(id).getBaseCon());
-        assertEquals(playerCharacter.getBaseWis(), playerCharacterService.getCharacter(id).getBaseWis());
-        assertEquals(playerCharacter.getBaseHP(), playerCharacterService.getCharacter(id).getBaseHP());
-        assertEquals(playerCharacter.getBaseProficiency(), playerCharacterService.getCharacter(id).getBaseProficiency());
+        assertEquals(playerCharacterDto.getName(), playerCharacterService.getCharacter(id).getName());
+        assertEquals(playerCharacterDto.getId(), playerCharacterService.getCharacter(id).getId());
+        assertEquals(playerCharacterDto.getAlignment(), playerCharacterService.getCharacter(id).getAlignment());
+        assertEquals(playerCharacterDto.getBackground(), playerCharacterService.getCharacter(id).getBackground());
+        assertEquals(playerCharacterDto.getPlayerClass(), playerCharacterService.getCharacter(id).getPlayerClass());
+        assertEquals(playerCharacterDto.getRace(), playerCharacterService.getCharacter(id).getRace());
+        assertEquals(playerCharacterDto.getLevel(), playerCharacterService.getCharacter(id).getLevel());
+        assertEquals(playerCharacterDto.getBaseCha(), playerCharacterService.getCharacter(id).getBaseCha());
+        assertEquals(playerCharacterDto.getBaseStr(), playerCharacterService.getCharacter(id).getBaseStr());
+        assertEquals(playerCharacterDto.getBaseInt(), playerCharacterService.getCharacter(id).getBaseInt());
+        assertEquals(playerCharacterDto.getBaseDex(), playerCharacterService.getCharacter(id).getBaseDex());
+        assertEquals(playerCharacterDto.getBaseCon(), playerCharacterService.getCharacter(id).getBaseCon());
+        assertEquals(playerCharacterDto.getBaseWis(), playerCharacterService.getCharacter(id).getBaseWis());
+        assertEquals(playerCharacterDto.getBaseHP(), playerCharacterService.getCharacter(id).getBaseHP());
+        assertEquals(playerCharacterDto.getBaseProficiency(), playerCharacterService.getCharacter(id).getBaseProficiency());
     }
 
     @Test
