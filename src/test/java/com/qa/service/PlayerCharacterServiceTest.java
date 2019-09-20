@@ -107,7 +107,6 @@ public class PlayerCharacterServiceTest {
 
     @Test
     public void updateCharacterTest(){
-        Long id = 1L;
         PlayerCharacter playerCharacter = new PlayerCharacter(1L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
         PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(1L, "CrowBar", "Kenku", "Bard", "Neutral", "Noble", 4, 10, 14, 15, 12, 10, 30, 22, 4 );
 

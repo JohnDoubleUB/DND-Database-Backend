@@ -116,11 +116,28 @@ public class InventoryServiceTest {
 
     @Test
     public void updateInventoryTest(){
+        InventoryDto inventoryDto = new InventoryDto(1L, 4L, 7, 8, 6, 0, "ignore");
+        Inventory inventory = new Inventory(1L, 2L, 4, 5, 6, 0, "Not much here");
 
+        Mockito.when(repository.getOne(inventoryDto.getId())).thenReturn(inventory);
+
+        assertEquals(inventoryDto.getEquipment(), inventoryService.updateInventory(inventoryDto.getId(), inventoryDto).getEquipment());
+        assertEquals(inventoryDto.getId(), inventoryService.updateInventory(inventoryDto.getId(), inventoryDto).getId());
     }
 
     @Test
     public void updateInventoryByPlayerIdTest(){
+        Long playerId = 2L;
 
+        List<Inventory> inventories = new ArrayList<Inventory>();
+        inventories.add(new Inventory(1L, 4L, 7, 8, 6, 0, "ignore"));
+        inventories.add(new Inventory(1L, 2L, 4, 3, 9, 10, "Not much"));
+
+        InventoryDto inventoryDto = new InventoryDto(4L, 2L, 4, 5, 6, 0, "Not much updated");
+
+        Mockito.when(repository.findAll()).thenReturn(inventories);
+
+        assertEquals(inventoryDto.getEquipment(), inventoryService.updateInventoryByPlayerId(playerId, inventoryDto).get(0).getEquipment());
+        assertEquals((Long)1L, inventoryService.updateInventoryByPlayerId(playerId, inventoryDto).get(0).getId());
     }
 }
