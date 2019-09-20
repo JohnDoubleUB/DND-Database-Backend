@@ -40,7 +40,7 @@ public class PlayerCharacterControllerTest {
 
     @Test
     public void addCharacterTest(){
-        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(4L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(null, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
         Mockito.when(playerCharacterService.addCharacter(playerCharacterDto)).thenReturn(new PlayerCharacterDto(4L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 ));
 
         assertEquals((Long) 4L, playerCharacterController.addCharacter(playerCharacterDto).getBody().getId());
