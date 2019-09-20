@@ -16,6 +16,7 @@ public class PlayerCharacterService {
     private PlayerCharacterRepository repository;
 
 
+    //Tested
     public List<PlayerCharacterDto> getCharacters(){
         List<PlayerCharacter> playerCharacters = repository.findAll();
         List<PlayerCharacterDto> playerCharactersDto = new ArrayList<PlayerCharacterDto>();
@@ -23,6 +24,7 @@ public class PlayerCharacterService {
         return playerCharactersDto;
     }
 
+    //Not tested?
     public PlayerCharacterDto addCharacter(PlayerCharacterDto playerCharacterDto){
         playerCharacterDto.setId(null);
         PlayerCharacter playerCharacter = PlayerCharacter.createPlayerCharacter();
@@ -45,6 +47,7 @@ public class PlayerCharacterService {
         return new PlayerCharacterDto(repository.saveAndFlush(playerCharacter));
     }
 
+    //Tested
     public PlayerCharacterDto getCharacter(Long id){
         PlayerCharacter playerCharacter = repository.getOne(id);
         return new PlayerCharacterDto(playerCharacter);

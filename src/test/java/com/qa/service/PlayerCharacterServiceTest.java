@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerCharacterServiceTest {
@@ -26,7 +27,7 @@ public class PlayerCharacterServiceTest {
 
     @Test
     public void getCharactersTest(){
-        List<PlayerCharacter> playerCharacters = new ArrayList<>();
+        List<PlayerCharacter> playerCharacters = new ArrayList<PlayerCharacter>();
         List<PlayerCharacterDto> playerCharacterDtos = new ArrayList<PlayerCharacterDto>();
 
         playerCharacters.add(new PlayerCharacter(2L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 ));
@@ -37,30 +38,83 @@ public class PlayerCharacterServiceTest {
 
         Mockito.when(repository.findAll()).thenReturn(playerCharacters);
 
-        assertEquals("Socrowtes", playerCharacterService.getCharacters().get(0).getName());
-        assertEquals(new Long(2L), playerCharacterService.getCharacters().get(0).getId());
-        assertEquals("CrowBar", playerCharacterService.getCharacters().get(1).getName());
-        assertEquals(new Long(1L), playerCharacterService.getCharacters().get(1).getId());
+        assertEquals(playerCharacterDtos.get(0).getName(), playerCharacterService.getCharacters().get(0).getName());
+        assertEquals(playerCharacterDtos.get(0).getId(), playerCharacterService.getCharacters().get(0).getId());
+        assertEquals(playerCharacterDtos.get(0).getAlignment(), playerCharacterService.getCharacters().get(0).getAlignment());
+        assertEquals(playerCharacterDtos.get(0).getBackground(), playerCharacterService.getCharacters().get(0).getBackground());
+        assertEquals(playerCharacterDtos.get(0).getPlayerClass(), playerCharacterService.getCharacters().get(0).getPlayerClass());
+        assertEquals(playerCharacterDtos.get(0).getRace(), playerCharacterService.getCharacters().get(0).getRace());
+        assertEquals(playerCharacterDtos.get(0).getLevel(), playerCharacterService.getCharacters().get(0).getLevel());
+        assertEquals(playerCharacterDtos.get(0).getBaseCha(), playerCharacterService.getCharacters().get(0).getBaseCha());
+        assertEquals(playerCharacterDtos.get(0).getBaseStr(), playerCharacterService.getCharacters().get(0).getBaseStr());
+        assertEquals(playerCharacterDtos.get(0).getBaseInt(), playerCharacterService.getCharacters().get(0).getBaseInt());
+        assertEquals(playerCharacterDtos.get(0).getBaseDex(), playerCharacterService.getCharacters().get(0).getBaseDex());
+        assertEquals(playerCharacterDtos.get(0).getBaseCon(), playerCharacterService.getCharacters().get(0).getBaseCon());
+        assertEquals(playerCharacterDtos.get(0).getBaseWis(), playerCharacterService.getCharacters().get(0).getBaseWis());
+        assertEquals(playerCharacterDtos.get(0).getBaseHP(), playerCharacterService.getCharacters().get(0).getBaseHP());
+        assertEquals(playerCharacterDtos.get(0).getBaseProficiency(), playerCharacterService.getCharacters().get(0).getBaseProficiency());
     }
+
+//
+//    @Test
+//    public void addCharacterTest(){
+//        PlayerCharacter playerCharacter = new PlayerCharacter(null, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+//        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(2L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+//
+//        Mockito.when(repository.saveAndFlush(playerCharacter)).thenReturn(new PlayerCharacterDto(playerCharacter);
+//
+//        assertEquals(playerCharacter.getId(), playerCharacterService.addCharacter(playerCharacterDto).getId());
+//    }
+
 
     @Test
     public void getCharacterTest(){
+        Long id = 1L;
 
-    }
+        PlayerCharacter playerCharacter = new PlayerCharacter(1L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
 
-    @Test
-    public void addCharacterTest(){
+        Mockito.when(repository.getOne(id)).thenReturn(playerCharacter);
 
+        assertEquals(playerCharacter.getId(), playerCharacterService.getCharacter(id).getId());
+
+        assertEquals(playerCharacter.getName(), playerCharacterService.getCharacter(id).getName());
+        assertEquals(playerCharacter.getId(), playerCharacterService.getCharacter(id).getId());
+        assertEquals(playerCharacter.getAlignment(), playerCharacterService.getCharacter(id).getAlignment());
+        assertEquals(playerCharacter.getBackground(), playerCharacterService.getCharacter(id).getBackground());
+        assertEquals(playerCharacter.getPlayerClass(), playerCharacterService.getCharacter(id).getPlayerClass());
+        assertEquals(playerCharacter.getRace(), playerCharacterService.getCharacter(id).getRace());
+        assertEquals(playerCharacter.getLevel(), playerCharacterService.getCharacter(id).getLevel());
+        assertEquals(playerCharacter.getBaseCha(), playerCharacterService.getCharacter(id).getBaseCha());
+        assertEquals(playerCharacter.getBaseStr(), playerCharacterService.getCharacter(id).getBaseStr());
+        assertEquals(playerCharacter.getBaseInt(), playerCharacterService.getCharacter(id).getBaseInt());
+        assertEquals(playerCharacter.getBaseDex(), playerCharacterService.getCharacter(id).getBaseDex());
+        assertEquals(playerCharacter.getBaseCon(), playerCharacterService.getCharacter(id).getBaseCon());
+        assertEquals(playerCharacter.getBaseWis(), playerCharacterService.getCharacter(id).getBaseWis());
+        assertEquals(playerCharacter.getBaseHP(), playerCharacterService.getCharacter(id).getBaseHP());
+        assertEquals(playerCharacter.getBaseProficiency(), playerCharacterService.getCharacter(id).getBaseProficiency());
     }
 
     @Test
     public void deleteCharacterTest(){
+        Long id = 1L;
+        PlayerCharacter playerCharacter = new PlayerCharacter(1L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
 
+        Mockito.when(repository.getOne(id)).thenReturn(playerCharacter);
+
+        assertEquals("Socrowtes", playerCharacterService.deleteCharacter(id).getName());
+
+        verify(repository, Mockito.times(1)).deleteById(id);
     }
 
     @Test
     public void updateCharacterTest(){
+        Long id = 1L;
+        PlayerCharacter playerCharacter = new PlayerCharacter(1L, "Socrowtes", "Kenku", "Monk", "Chaotic Neutral", "Criminal", 4, 10, 10, 15, 17, 10, 28, 22, 2 );
+        PlayerCharacterDto playerCharacterDto = new PlayerCharacterDto(1L, "CrowBar", "Kenku", "Bard", "Neutral", "Noble", 4, 10, 14, 15, 12, 10, 30, 22, 4 );
 
+        Mockito.when(repository.getOne(playerCharacterDto.getId())).thenReturn(playerCharacter);
+        assertEquals(playerCharacterDto.getName(), playerCharacterService.updateCharacter(playerCharacterDto.getId(), playerCharacterDto).getName());
+        assertEquals(playerCharacter.getId(), playerCharacterService.updateCharacter(playerCharacterDto.getId(),playerCharacterDto).getId());
     }
 
 }
