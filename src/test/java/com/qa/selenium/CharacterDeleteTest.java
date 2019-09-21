@@ -1,14 +1,11 @@
 package com.qa.selenium;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -17,7 +14,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class InventoryDeleteTest {
+public class CharacterDeleteTest {
     private ChromeDriver driver;
 
     @Before
@@ -39,7 +36,7 @@ public class InventoryDeleteTest {
 
     @Test
     public void inventoryDeleteTest() throws InterruptedException {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-inventory.html");
+        driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-character.html");
 
         List<WebElement> tableRecords = driver.findElement(By.id("tableBody")).findElements(By.tagName("tr"));
 
@@ -48,10 +45,10 @@ public class InventoryDeleteTest {
 
         //Find delete button for first record
         WebElement record1DeleteButton = tableRecords.get(0).findElement(By.tagName("button"));
+        WebElement record2DeleteButton = tableRecords.get(1).findElement(By.tagName("button"));
 
         //Click delete
-        record1DeleteButton.click();
-
+        record2DeleteButton.click();
 
         Thread.sleep(1000);
 
@@ -60,24 +57,26 @@ public class InventoryDeleteTest {
 
         assertEquals(1,tableRecords.size());
 
-        //Check Create/Edit inventory page for this character
+        //Check the inventory for the character deleted was also removed
 
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
+        driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-inventory.html");
+        Thread.sleep(1000);
+
+        tableRecords = driver.findElement(By.id("tableBody")).findElements(By.tagName("tr"));
+
+        assertEquals(0, tableRecords.size());
+
+        //check that the character is no longer on the list
+        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
         Thread.sleep(1000);
 
         WebElement charSelection = driver.findElement(By.id("playerId"));
-        Select charSelect = new Select(charSelection);
+        int charSelectionSize = charSelection.findElements(By.tagName("option")).size();
 
-        //Select the right character
-        charSelect.selectByIndex(1);
+        assertEquals(2, charSelectionSize);
 
-        List<WebElement> inputFields = driver.findElement(By.id("invsub")).findElements(By.tagName("input"));
-        WebElement equipmentField = driver.findElement(By.id("invsub")).findElement(By.tagName("textarea"));
-
-        //Check that all the number fields are default value
-        inputFields.stream().filter(element -> element.getAttribute("type").equals("number")).forEach(element -> assertEquals("0", element.getAttribute("value")));
-
-        //Check equipment text area is empty
-        assertEquals("", equipmentField.getAttribute("value"));
+        driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-character.html");
+        Thread.sleep(500);
+        record1DeleteButton.click();
     }
 }
