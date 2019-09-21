@@ -44,7 +44,6 @@ public class CharacterDeleteTest {
         assertEquals(2, tableRecords.size());
 
         //Find delete button for first record
-        WebElement record1DeleteButton = tableRecords.get(0).findElement(By.tagName("button"));
         WebElement record2DeleteButton = tableRecords.get(1).findElement(By.tagName("button"));
 
         //Click delete
@@ -77,6 +76,10 @@ public class CharacterDeleteTest {
 
         driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-character.html");
         Thread.sleep(500);
+
+        tableRecords = driver.findElement(By.id("tableBody")).findElements(By.tagName("tr"));
+        WebElement record1DeleteButton = tableRecords.get(0).findElement(By.tagName("button"));
+
         record1DeleteButton.click();
     }
 }
