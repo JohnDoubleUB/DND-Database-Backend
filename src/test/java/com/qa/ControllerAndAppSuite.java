@@ -15,5 +15,4 @@ import com.qa.mainapp.AppTest;
 @RunWith(Suite.class)
 @SuiteClasses({InventoryServiceTest.class, PlayerCharacterServiceTest.class, InventoryControllerTest.class, PlayerCharacterControllerTest.class, AppTest.class})
 public class ControllerAndAppSuite {
-
 }

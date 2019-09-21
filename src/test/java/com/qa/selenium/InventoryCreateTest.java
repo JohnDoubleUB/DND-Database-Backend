@@ -16,18 +16,15 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class CharacterCreateTest {
+public class InventoryCreateTest {
     private ChromeDriver driver;
 
     private ArrayList<int[]> intFields = new ArrayList<int[]>(Arrays.asList(
-            new int[]{20, 15, 13, 18, 20, 10, 7, 9, 4},
-            new int[]{10, 19, 20, 20, 17, 10, 8, 10, 2}
+            new int[]{4, 6, 10, 0},
+            new int[]{2, 8, 22, 2}
     ));
 
-    private ArrayList<String[]> textFields = new ArrayList<String[]>(Arrays.asList(
-            new String[]{"Socrowtes", "Kenku", "Monk", "Criminal", "Chaotic Neutral"},
-            new String[]{"Jeff", "Human", "Bard", "Noble", "Neutral"}
-            ));
+    private String[] textField = {"S's old inventory", "Jeff's old inventory"};
 
 
 
@@ -47,32 +44,12 @@ public class CharacterCreateTest {
     }
 
     @Test
-    public void charSubmissionEmptyFieldsTest() throws InterruptedException {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
-        WebElement charSelection = driver.findElement(By.id("playerId"));
-        WebElement submitButton = driver.findElement(By.xpath("//*[@id=\"charsub\"]/input"));
-        String defaultValue = charSelection.getAttribute("value");
-
-        submitButton.click();
-
-        Thread.sleep(100);
-
-        charSelection = driver.findElement(By.id("playerId"));
-
-        Thread.sleep(100);
-
-        assertEquals(charSelection.getAttribute("value"), defaultValue);
-
-        Thread.sleep(100);
-    }
-
-    @Test
-    public void charSubmissionBoxValueResetTest() {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
+    public void invSubmissionBoxValueResetTest() {
+        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
 
         Actions actions = new Actions(driver);
 
-        List<WebElement> inputFields = driver.findElement(By.id("charsub")).findElements(By.tagName("input"));
+        List<WebElement> inputFields = driver.findElement(By.id("invsub")).findElements(By.tagName("input"));
 
         int max;
         int min;
@@ -101,59 +78,54 @@ public class CharacterCreateTest {
         }
     }
 
-    //Create a character test!
+    //Create a inventory test!
 
     @Test
-    public void charSubmissionWriteTest() throws InterruptedException {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
+    public void invSubmissionWriteTest() throws InterruptedException {
+        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
         Actions actions = new Actions(driver);
 
-        List<WebElement> inputFields = driver.findElement(By.id("charsub")).findElements(By.tagName("input"));
-        WebElement submitButton = driver.findElement(By.xpath("//*[@id=\"charsub\"]/input"));
+        List<WebElement> inputFields = driver.findElement(By.id("invsub")).findElements(By.tagName("input"));
+        WebElement equipmentField = driver.findElement(By.id("invsub")).findElement(By.tagName("textarea"));
+        WebElement submitButton = driver.findElement(By.xpath("//*[@id=\"invsub\"]/div/div[2]/input[5]"));
 
         //Get the character dropdown
         WebElement charSelection = driver.findElement(By.id("playerId"));
         Select charSelect = new Select(charSelection);
-        String defaultOption = charSelect.getFirstSelectedOption().getText();
 
         //Create variables needed for handling the generation of characters
-        int textFieldCount;
         int noFieldCount;
 
         //For each text field entry create a character
-        String[] textField;
         int[] intField;
 
-
-        for(int i = 0; i < textFields.size(); i++){
-            textField = textFields.get(i);
+        for(int i = 0; i < intFields.size(); i++){
             intField = intFields.get(i);
 
-            textFieldCount = 0;
+            charSelect.selectByIndex(i+1);
+
             noFieldCount = 0;
 
             //Get for each input in inputFields
             for(WebElement element : inputFields) {
                 //Check if it is of type "number"
                 if(element.getAttribute("type").equals("number")) {
+                    element.clear();
                     actions.click(element).sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE).sendKeys(Integer.toString(intField[noFieldCount])).perform();
                     noFieldCount++;
-                    Thread.sleep(100);
-                } else if(element.getAttribute("type").equals("text")){ //If its a text field
-                    actions.click(element).sendKeys(textField[textFieldCount]);
-                    textFieldCount++;
                     Thread.sleep(100);
                 }
             }
 
+            actions.click(equipmentField).sendKeys(textField[i]).perform();
+            Thread.sleep(100);
+
             submitButton.click();
             Thread.sleep(100);
 
-            assertEquals(textField[0],charSelect.getFirstSelectedOption().getText());
-
             charSelect.selectByIndex(0);
 
-            assertEquals(inputFields.get(0).getAttribute("value"),"");
+            assertEquals("0", inputFields.get(1).getAttribute("value"));
         }
     }
 

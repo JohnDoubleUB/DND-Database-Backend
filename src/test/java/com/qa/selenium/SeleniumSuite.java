@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({NavigationTest.class, CharacterCreateTest.class})
+@SuiteClasses({NavigationTest.class, CharacterCreateTest.class, CharacterCreatePersistenceTest.class, CharacterUpdateTest.class, CharacterUpdatePersistenceTest.class})
 public class SeleniumSuite {
 
 }
