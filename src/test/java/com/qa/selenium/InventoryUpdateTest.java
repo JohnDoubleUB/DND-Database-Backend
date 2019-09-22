@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -31,11 +32,11 @@ public class InventoryUpdateTest {
     @Before
     public void setUp(){
         System.setProperty(SeleniumConst.DRIVER_KEY, SeleniumConst.DRIVER_LOCATION);
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--headless");
-        //driver = new ChromeDriver(chromeOptions);
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver(chromeOptions);
+        //driver = new ChromeDriver();
+        //driver.manage().window().maximize();
     }
 
     @After

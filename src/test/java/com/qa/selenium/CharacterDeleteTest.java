@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -20,11 +21,11 @@ public class CharacterDeleteTest {
     @Before
     public void setUp(){
         System.setProperty(SeleniumConst.DRIVER_KEY, SeleniumConst.DRIVER_LOCATION);
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--headless");
-        //driver = new ChromeDriver(chromeOptions);
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver(chromeOptions);
+        //driver = new ChromeDriver();
+        //driver.manage().window().maximize();
     }
 
     @After

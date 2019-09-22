@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,11 +24,11 @@ public class NavigationTest {
     @Before
     public void setUp(){
         System.setProperty(SeleniumConst.DRIVER_KEY, SeleniumConst.DRIVER_LOCATION);
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--headless");
-        //driver = new ChromeDriver(chromeOptions);
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver(chromeOptions);
+        //driver = new ChromeDriver();
+        //driver.manage().window().maximize();
     }
 
     @After
@@ -37,6 +38,7 @@ public class NavigationTest {
 
     @Test
     public void navigationTest() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         String[] pages = {"index.html","create-edit-character.html", "create-edit-inventory.html", "view-delete-character.html", "view-delete-inventory.html"};
         String URL;
         driver.get(SeleniumConst.HOMEPAGE_URL+pages[4]);
