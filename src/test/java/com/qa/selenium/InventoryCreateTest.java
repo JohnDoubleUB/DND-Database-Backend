@@ -41,7 +41,8 @@ public class InventoryCreateTest {
 
     @After
     public void tearDown(){
-        driver.close();
+        //driver.close();
+        driver.quit();
     }
 
     @Test

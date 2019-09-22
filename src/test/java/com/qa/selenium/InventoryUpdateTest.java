@@ -41,7 +41,8 @@ public class InventoryUpdateTest {
 
     @After
     public void tearDown(){
-        driver.close();
+        //driver.close();
+        driver.quit();
     }
 
     //Create a inventory test!

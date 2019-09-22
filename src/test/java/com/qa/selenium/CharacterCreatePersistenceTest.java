@@ -45,7 +45,8 @@ public class CharacterCreatePersistenceTest {
 
     @After
     public void tearDown(){
-        driver.close();
+        //driver.close();
+        driver.quit();
     }
 
     @Test

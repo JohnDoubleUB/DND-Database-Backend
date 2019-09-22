@@ -45,7 +45,8 @@ public class CharacterUpdateTest {
 
     @After
     public void tearDown(){
-        driver.close();
+        //driver.close();
+        driver.quit();
     }
 
     //Create a character test!
