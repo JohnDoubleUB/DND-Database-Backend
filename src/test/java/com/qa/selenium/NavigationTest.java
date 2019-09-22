@@ -33,13 +33,13 @@ public class NavigationTest {
 
     @After
     public void tearDown(){
-        //driver.close();
-        driver.quit();
+        driver.close();
+        //driver.quit();
     }
 
     @Test
     public void navigationTest() throws InterruptedException {
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
+        Thread.sleep(30000);
         String[] pages = {"index.html","create-edit-character.html", "create-edit-inventory.html", "view-delete-character.html", "view-delete-inventory.html"};
         String URL;
         driver.get(SeleniumConst.HOMEPAGE_URL+pages[4]);

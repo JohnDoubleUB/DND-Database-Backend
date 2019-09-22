@@ -33,8 +33,8 @@ public class InventoryDeleteTest {
 
     @After
     public void tearDown(){
-        //driver.close();
-        driver.quit();
+        driver.close();
+        //driver.quit();
     }
 
     //Create a inventory test!
