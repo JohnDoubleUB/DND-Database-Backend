@@ -29,5 +29,10 @@ pipeline {
                 sh 'mvn test -Dtest=SeleniumSuite'
             }
         }
+        stage('Post Pipeline Cleanup') {
+            steps{
+                sh 'docker system prune -f'
+            }
+        }
     }
 }
