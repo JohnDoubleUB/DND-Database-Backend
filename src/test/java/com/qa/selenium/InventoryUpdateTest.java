@@ -35,6 +35,7 @@ public class InventoryUpdateTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
+        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
 //        driver = new ChromeDriver();
 //        driver.manage().window().maximize();
     }
@@ -49,8 +50,6 @@ public class InventoryUpdateTest {
 
     @Test
     public void inventorySubmissionUpdateTest() throws InterruptedException {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
-        Thread.sleep(500);
 
         Actions actions = new Actions(driver);
 

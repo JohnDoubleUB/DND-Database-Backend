@@ -42,7 +42,7 @@ public class InventoryDeleteTest {
     @Test
     public void inventoryDeleteTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-inventory.html");
-        Thread.sleep(500);
+        Thread.sleep(2000);
 
         List<WebElement> tableRecords = driver.findElement(By.id("tableBody")).findElements(By.tagName("tr"));
 

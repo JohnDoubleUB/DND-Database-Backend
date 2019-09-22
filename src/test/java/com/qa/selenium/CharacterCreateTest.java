@@ -38,6 +38,8 @@ public class CharacterCreateTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
+
+        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
 //        driver = new ChromeDriver();
 //        driver.manage().window().maximize();
     }
@@ -50,7 +52,6 @@ public class CharacterCreateTest {
 
     @Test
     public void characterSubmissionEmptyFieldsTest() throws InterruptedException {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
         WebElement charSelection = driver.findElement(By.id("playerId"));
         WebElement submitButton = driver.findElement(By.xpath("//*[@id=\"charsub\"]/input"));
         String defaultValue = charSelection.getAttribute("value");
@@ -70,7 +71,6 @@ public class CharacterCreateTest {
 
     @Test
     public void characterSubmissionBoxValueResetTest() {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
 
         Actions actions = new Actions(driver);
 
@@ -107,8 +107,6 @@ public class CharacterCreateTest {
 
     @Test
     public void characterSubmissionWriteTest() throws InterruptedException {
-        driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
-        Thread.sleep(500);
 
         Actions actions = new Actions(driver);
 
