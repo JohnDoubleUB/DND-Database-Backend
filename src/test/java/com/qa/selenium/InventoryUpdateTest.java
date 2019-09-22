@@ -90,6 +90,7 @@ public class InventoryUpdateTest {
             actions.click(equipmentField).sendKeys(textField[i]).perform();
 
             submitButton.click();
+            Thread.sleep(500);
 
             charSelect = new Select(charSelection);
 
