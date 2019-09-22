@@ -37,7 +37,7 @@ public class CharacterDeleteTest {
     //Create a inventory test!
 
     @Test
-    public void characterDeleteTest() throws InterruptedException {
+    public void deleteTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-character.html");
         Thread.sleep(2000);
 
@@ -51,7 +51,6 @@ public class CharacterDeleteTest {
 
         //Click delete
         record2DeleteButton.click();
-
         Thread.sleep(500);
 
         //Check table size (Which should now be 1)

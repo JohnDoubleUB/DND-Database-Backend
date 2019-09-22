@@ -40,7 +40,7 @@ public class InventoryDeleteTest {
     //Create a inventory test!
 
     @Test
-    public void inventoryDeleteTest() throws InterruptedException {
+    public void deleteTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-inventory.html");
         Thread.sleep(2000);
 

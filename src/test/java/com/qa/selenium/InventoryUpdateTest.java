@@ -49,7 +49,7 @@ public class InventoryUpdateTest {
     //Create a inventory test!
 
     @Test
-    public void inventorySubmissionUpdateTest() throws InterruptedException {
+    public void updateTest() throws InterruptedException {
 
         Actions actions = new Actions(driver);
 
@@ -68,7 +68,6 @@ public class InventoryUpdateTest {
         int[] intField;
 
         for(int i = 0; i < intFields.size(); i++){
-            charSelect = new Select(charSelection);
 
             intField = intFields.get(i);
 
@@ -91,6 +90,8 @@ public class InventoryUpdateTest {
             actions.click(equipmentField).sendKeys(textField[i]).perform();
 
             submitButton.click();
+
+            charSelect = new Select(charSelection);
 
             charSelect.selectByIndex(0);
             Thread.sleep(500);

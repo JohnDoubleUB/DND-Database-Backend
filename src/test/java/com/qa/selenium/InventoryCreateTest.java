@@ -82,7 +82,7 @@ public class InventoryCreateTest {
     //Create a inventory test!
 
     @Test
-    public void inventorySubmissionWriteTest() throws InterruptedException {
+    public void writeTest() throws InterruptedException {
         Actions actions = new Actions(driver);
 
         List<WebElement> inputFields = driver.findElement(By.id("invsub")).findElements(By.tagName("input"));
@@ -100,7 +100,6 @@ public class InventoryCreateTest {
         int[] intField;
 
         for(int i = 0; i < intFields.size(); i++){
-            charSelect = new Select(charSelection);
 
             intField = intFields.get(i);
 
@@ -123,6 +122,8 @@ public class InventoryCreateTest {
 
             submitButton.click();
             Thread.sleep(500);
+
+            charSelect = new Select(charSelection);
 
             charSelect.selectByIndex(0);
             Thread.sleep(500);

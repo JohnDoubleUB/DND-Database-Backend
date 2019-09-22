@@ -53,7 +53,7 @@ public class CharacterUpdateTest {
     //Create a character test!
 
     @Test
-    public void characterSubmissionUpdateTest() throws InterruptedException {
+    public void updateTest() throws InterruptedException {
 
         Actions actions = new Actions(driver);
 
@@ -74,7 +74,6 @@ public class CharacterUpdateTest {
 
 
         for(int i = 0; i < textFields.size(); i++){
-            charSelect = new Select(charSelection);
 
             charSelect.selectByIndex(i+1);
             Thread.sleep(500);
@@ -100,6 +99,8 @@ public class CharacterUpdateTest {
 
             submitButton.click();
             Thread.sleep(500);
+
+            charSelect = new Select(charSelection);
 
             assertEquals(textField[0],charSelect.getFirstSelectedOption().getText());
 

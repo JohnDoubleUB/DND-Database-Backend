@@ -51,7 +51,7 @@ public class CharacterCreateTest {
     }
 
     @Test
-    public void characterSubmissionEmptyFieldsTest() throws InterruptedException {
+    public void emptyFieldsTest() throws InterruptedException {
         WebElement charSelection = driver.findElement(By.id("playerId"));
         WebElement submitButton = driver.findElement(By.xpath("//*[@id=\"charsub\"]/input"));
         String defaultValue = charSelection.getAttribute("value");
@@ -70,7 +70,7 @@ public class CharacterCreateTest {
     }
 
     @Test
-    public void characterSubmissionBoxValueResetTest() {
+    public void boxValueResetTest() {
 
         Actions actions = new Actions(driver);
 
@@ -106,7 +106,7 @@ public class CharacterCreateTest {
     //Create a character test!
 
     @Test
-    public void characterSubmissionWriteTest() throws InterruptedException {
+    public void writeTest() throws InterruptedException {
 
         Actions actions = new Actions(driver);
 
@@ -127,8 +127,6 @@ public class CharacterCreateTest {
 
 
         for(int i = 0; i < textFields.size(); i++){
-
-            charSelect = new Select(charSelection);
 
             textField = textFields.get(i);
             intField = intFields.get(i);
@@ -151,7 +149,9 @@ public class CharacterCreateTest {
             }
 
             submitButton.click();
-            Thread.sleep(100);
+            Thread.sleep(500);
+
+            charSelect = new Select(charSelection);
 
             assertEquals(textField[0],charSelect.getFirstSelectedOption().getText());
 
