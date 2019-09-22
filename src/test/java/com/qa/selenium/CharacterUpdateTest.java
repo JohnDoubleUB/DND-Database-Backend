@@ -39,8 +39,8 @@ public class CharacterUpdateTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
-        //driver = new ChromeDriver();
-        //driver.manage().window().maximize();
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
     }
 
     @After
@@ -52,8 +52,10 @@ public class CharacterUpdateTest {
     //Create a character test!
 
     @Test
-    public void charSubmissionUpdateTest() throws InterruptedException {
+    public void characterSubmissionUpdateTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
+        Thread.sleep(500);
+
         Actions actions = new Actions(driver);
 
         List<WebElement> inputFields = driver.findElement(By.id("charsub")).findElements(By.tagName("input"));
@@ -74,6 +76,7 @@ public class CharacterUpdateTest {
 
         for(int i = 0; i < textFields.size(); i++){
             charSelect.selectByIndex(i+1);
+            Thread.sleep(500);
 
             textField = textFields.get(i);
             intField = intFields.get(i);
@@ -87,23 +90,47 @@ public class CharacterUpdateTest {
                 if(element.getAttribute("type").equals("number")) {
                     actions.click(element).sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE).sendKeys(Integer.toString(intField[noFieldCount])).perform();
                     noFieldCount++;
-                    Thread.sleep(600);
                 } else if(element.getAttribute("type").equals("text")){ //If its a text field
                     element.clear();
                     actions.click(element).sendKeys(textField[textFieldCount]);
                     textFieldCount++;
-                    Thread.sleep(600);
                 }
             }
 
             submitButton.click();
-            Thread.sleep(600);
+            Thread.sleep(500);
 
             assertEquals(textField[0],charSelect.getFirstSelectedOption().getText());
 
             charSelect.selectByIndex(0);
+            Thread.sleep(500);
 
             assertEquals(inputFields.get(0).getAttribute("value"),"");
+        }
+
+        //Test the the updated character info persists
+
+        for(int i = 0; i < textFields.size(); i++){
+
+            textField = textFields.get(i);
+            intField = intFields.get(i);
+
+            charSelect.selectByIndex(i+1);
+            Thread.sleep(500);
+
+            textFieldCount = 0;
+            noFieldCount = 0;
+
+            for(WebElement element : inputFields) {
+                //Check if it is of type "number"
+                if(element.getAttribute("type").equals("number")) {
+                    assertEquals(intField[noFieldCount], Integer.parseInt(element.getAttribute("value")));
+                    noFieldCount++;
+                } else if(element.getAttribute("type").equals("text")){ //If its a text field
+                    assertEquals(textField[textFieldCount], element.getAttribute("value"));
+                    textFieldCount++;
+                }
+            }
         }
     }
 }

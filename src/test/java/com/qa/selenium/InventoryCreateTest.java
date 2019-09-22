@@ -35,8 +35,8 @@ public class InventoryCreateTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
-        //driver = new ChromeDriver();
-        //driver.manage().window().maximize();
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
     }
 
     @After
@@ -46,7 +46,7 @@ public class InventoryCreateTest {
     }
 
     @Test
-    public void invSubmissionBoxValueResetTest() {
+    public void inventorySubmissionBoxValueResetTest() {
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
 
         Actions actions = new Actions(driver);
@@ -83,8 +83,10 @@ public class InventoryCreateTest {
     //Create a inventory test!
 
     @Test
-    public void invSubmissionWriteTest() throws InterruptedException {
+    public void inventorySubmissionWriteTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
+        Thread.sleep(500);
+
         Actions actions = new Actions(driver);
 
         List<WebElement> inputFields = driver.findElement(By.id("invsub")).findElements(By.tagName("input"));
@@ -105,6 +107,7 @@ public class InventoryCreateTest {
             intField = intFields.get(i);
 
             charSelect.selectByIndex(i+1);
+            Thread.sleep(500);
 
             noFieldCount = 0;
 
@@ -115,35 +118,40 @@ public class InventoryCreateTest {
                     element.clear();
                     actions.click(element).sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE).sendKeys(Integer.toString(intField[noFieldCount])).perform();
                     noFieldCount++;
-                    Thread.sleep(100);
                 }
             }
 
             actions.click(equipmentField).sendKeys(textField[i]).perform();
-            Thread.sleep(100);
 
             submitButton.click();
-            Thread.sleep(100);
+            Thread.sleep(500);
 
             charSelect.selectByIndex(0);
+            Thread.sleep(500);
 
             assertEquals("0", inputFields.get(1).getAttribute("value"));
         }
+
+        //Check that inventories created persist
+
+        for(int i = 0; i < intFields.size(); i++){
+            intField = intFields.get(i);
+
+            charSelect.selectByIndex(i+1);
+            Thread.sleep(500);
+
+            noFieldCount = 0;
+
+            //Get for each input in inputFields
+            for(WebElement element : inputFields) {
+                //Check if it is of type "number"
+                if(element.getAttribute("type").equals("number")) {
+                    assertEquals(Integer.toString(intField[noFieldCount]) ,element.getAttribute("value"));
+                    noFieldCount++;
+                }
+            }
+
+            assertEquals(textField[i], equipmentField.getAttribute("value"));
+        }
     }
-
-
-
-    //Update one of them as a test
-
-
-
-    //create inventories for both
-
-    //update one of them
-
-    //delete one from the inventories page
-
-    //delete the other character // Then check the inventories page is empty
-
-    //this would conclude basic functionality testing!
 }

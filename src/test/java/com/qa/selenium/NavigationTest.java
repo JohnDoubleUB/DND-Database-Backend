@@ -27,8 +27,8 @@ public class NavigationTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
-        //driver = new ChromeDriver();
-        //driver.manage().window().maximize();
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
     }
 
     @After

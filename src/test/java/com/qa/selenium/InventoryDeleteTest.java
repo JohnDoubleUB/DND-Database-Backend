@@ -27,8 +27,8 @@ public class InventoryDeleteTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
-        //driver = new ChromeDriver();
-        //driver.manage().window().maximize();
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
     }
 
     @After
@@ -42,6 +42,7 @@ public class InventoryDeleteTest {
     @Test
     public void inventoryDeleteTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"view-delete-inventory.html");
+        Thread.sleep(500);
 
         List<WebElement> tableRecords = driver.findElement(By.id("tableBody")).findElements(By.tagName("tr"));
 
@@ -53,9 +54,7 @@ public class InventoryDeleteTest {
 
         //Click delete
         record1DeleteButton.click();
-
-
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         //Check table size (Which should now be 1)
         tableRecords = driver.findElement(By.id("tableBody")).findElements(By.tagName("tr"));
@@ -65,13 +64,14 @@ public class InventoryDeleteTest {
         //Check Create/Edit inventory page for this character
 
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-inventory.html");
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
         WebElement charSelection = driver.findElement(By.id("playerId"));
         Select charSelect = new Select(charSelection);
 
         //Select the right character
         charSelect.selectByIndex(1);
+        Thread.sleep(500);
 
         List<WebElement> inputFields = driver.findElement(By.id("invsub")).findElements(By.tagName("input"));
         WebElement equipmentField = driver.findElement(By.id("invsub")).findElement(By.tagName("textarea"));

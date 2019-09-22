@@ -38,8 +38,8 @@ public class CharacterCreateTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
-        //driver = new ChromeDriver();
-        //driver.manage().window().maximize();
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
     }
 
     @After
@@ -49,7 +49,7 @@ public class CharacterCreateTest {
     }
 
     @Test
-    public void charSubmissionEmptyFieldsTest() throws InterruptedException {
+    public void characterSubmissionEmptyFieldsTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
         WebElement charSelection = driver.findElement(By.id("playerId"));
         WebElement submitButton = driver.findElement(By.xpath("//*[@id=\"charsub\"]/input"));
@@ -69,7 +69,7 @@ public class CharacterCreateTest {
     }
 
     @Test
-    public void charSubmissionBoxValueResetTest() {
+    public void characterSubmissionBoxValueResetTest() {
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
 
         Actions actions = new Actions(driver);
@@ -106,8 +106,10 @@ public class CharacterCreateTest {
     //Create a character test!
 
     @Test
-    public void charSubmissionWriteTest() throws InterruptedException {
+    public void characterSubmissionWriteTest() throws InterruptedException {
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
+        Thread.sleep(500);
+
         Actions actions = new Actions(driver);
 
         List<WebElement> inputFields = driver.findElement(By.id("charsub")).findElements(By.tagName("input"));
@@ -116,7 +118,6 @@ public class CharacterCreateTest {
         //Get the character dropdown
         WebElement charSelection = driver.findElement(By.id("playerId"));
         Select charSelect = new Select(charSelection);
-        String defaultOption = charSelect.getFirstSelectedOption().getText();
 
         //Create variables needed for handling the generation of characters
         int textFieldCount;
@@ -157,21 +158,30 @@ public class CharacterCreateTest {
 
             assertEquals(inputFields.get(0).getAttribute("value"),"");
         }
+
+        //Test that the created characters persist
+
+        for(int i = 0; i < textFields.size(); i++) {
+
+            textField = textFields.get(i);
+            intField = intFields.get(i);
+
+            charSelect.selectByIndex(i + 1);
+            Thread.sleep(500);
+
+            textFieldCount = 0;
+            noFieldCount = 0;
+
+            for (WebElement element : inputFields) {
+                //Check if it is of type "number"
+                if (element.getAttribute("type").equals("number")) {
+                    assertEquals(intField[noFieldCount], Integer.parseInt(element.getAttribute("value")));
+                    noFieldCount++;
+                } else if (element.getAttribute("type").equals("text")) { //If its a text field
+                    assertEquals(textField[textFieldCount], element.getAttribute("value"));
+                        textFieldCount++;
+                }
+            }
+        }
     }
-
-
-
-    //Update one of them as a test
-
-
-
-    //create inventories for both
-
-    //update one of them
-
-    //delete one from the inventories page
-
-    //delete the other character // Then check the inventories page is empty
-
-    //this would conclude basic functionality testing!
 }
