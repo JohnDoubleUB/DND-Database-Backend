@@ -128,7 +128,7 @@ public class CharacterCreateTest {
 
         for(int i = 0; i < textFields.size(); i++){
 
-            inputFields = driver.findElement(By.id("charsub")).findElements(By.tagName("input"));
+            charSelect = new Select(charSelection);
 
             textField = textFields.get(i);
             intField = intFields.get(i);
@@ -163,8 +163,6 @@ public class CharacterCreateTest {
         //Test that the created characters persist
 
         for(int i = 0; i < textFields.size(); i++) {
-
-            inputFields = driver.findElement(By.id("charsub")).findElements(By.tagName("input"));
 
             textField = textFields.get(i);
             intField = intFields.get(i);
