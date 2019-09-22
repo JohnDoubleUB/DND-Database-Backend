@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn install -DskipTests'
+                sh 'chmod a+x src/test/resources/chromedriver'
             }
         }
         stage('Junit test prep'){
