@@ -39,7 +39,7 @@ public class NavigationTest {
 
     @Test
     public void navigationTest() throws InterruptedException {
-        Thread.sleep(30000);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         String[] pages = {"index.html","create-edit-character.html", "create-edit-inventory.html", "view-delete-character.html", "view-delete-inventory.html"};
         String URL;
         driver.get(SeleniumConst.HOMEPAGE_URL+pages[4]);
