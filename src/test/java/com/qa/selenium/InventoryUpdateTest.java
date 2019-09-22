@@ -68,6 +68,8 @@ public class InventoryUpdateTest {
         int[] intField;
 
         for(int i = 0; i < intFields.size(); i++){
+            charSelect = new Select(charSelection);
+
             intField = intFields.get(i);
 
             charSelect.selectByIndex(i+1);

@@ -74,6 +74,8 @@ public class CharacterUpdateTest {
 
 
         for(int i = 0; i < textFields.size(); i++){
+            charSelect = new Select(charSelection);
+
             charSelect.selectByIndex(i+1);
             Thread.sleep(500);
 
