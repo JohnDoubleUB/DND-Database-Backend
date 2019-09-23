@@ -28,19 +28,19 @@ public class PlayerCharacterController {
         return new ResponseEntity<PlayerCharacterDto>(service.addCharacter(player), HttpStatus.CREATED);
     }
 
-    //Get a specific character
+    //Get a character by id
     @RequestMapping(value = "characters/{id}", method = RequestMethod.GET)
     public ResponseEntity<PlayerCharacterDto> getCharacter(@PathVariable Long id){
         return new ResponseEntity<PlayerCharacterDto>(service.getCharacter(id), HttpStatus.OK);
     }
 
-    //Delete a specific character
+    //Delete a character by id
     @RequestMapping(value = "characters/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<PlayerCharacterDto> deleteCharacter(@PathVariable Long id){
         return new ResponseEntity<PlayerCharacterDto>(service.deleteCharacter(id), HttpStatus.ACCEPTED);
     }
 
-    //Update Character by id
+    //Update a Character by id
     @RequestMapping(value = "characters/{id}", method = RequestMethod.PUT)
     public ResponseEntity<PlayerCharacterDto> updateCharacter(@PathVariable Long id, @RequestBody PlayerCharacterDto player){
         return new ResponseEntity<PlayerCharacterDto>(service.updateCharacter(id, player), HttpStatus.ACCEPTED);

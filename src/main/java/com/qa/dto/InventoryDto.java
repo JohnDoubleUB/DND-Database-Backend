@@ -1,8 +1,9 @@
 package com.qa.dto;
 
 import com.qa.persistence.models.Inventory;
+import com.qa.persistence.models.InventoryInterface;
 
-public class InventoryDto {
+public class InventoryDto implements InventoryInterface {
 
     private Long id;
 

@@ -2,8 +2,9 @@ package com.qa.dto;
 
 
 import com.qa.persistence.models.PlayerCharacter;
+import com.qa.persistence.models.PlayerCharacterInterface;
 
-public class PlayerCharacterDto {
+public class PlayerCharacterDto implements PlayerCharacterInterface {
 
     private Long id;
 

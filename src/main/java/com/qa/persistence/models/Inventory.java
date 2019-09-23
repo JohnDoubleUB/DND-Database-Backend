@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Inventories")
-public class Inventory {
+public class Inventory implements InventoryInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -46,10 +46,6 @@ public class Inventory {
     public Long getId() {
         return id;
     }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public int getCopperPiece() {
         return copperPiece;

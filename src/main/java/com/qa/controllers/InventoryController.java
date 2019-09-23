@@ -17,38 +17,38 @@ public class InventoryController {
     @Autowired
     private InventoryService service;
 
-    //Get all inventories -- DONE
+    //Get all inventories
     @RequestMapping(value = "inventories", method = RequestMethod.GET)
     public ResponseEntity<List<InventoryDto>> getInventories(){
         return new ResponseEntity<List<InventoryDto>>(service.getInventories(), HttpStatus.OK);
     }
 
-    //Add an inventory -- DONE
+    //Add an inventory
     @RequestMapping(value = "inventories", method = RequestMethod.POST)
     public ResponseEntity<InventoryDto> addInventory(@RequestBody InventoryDto inventoryDto){
         return new ResponseEntity<InventoryDto>(service.addInventory(inventoryDto), HttpStatus.CREATED);
     }
 
-    //Get a singular inventory -- DONE
+    //Get an inventory by id
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.GET)
     public ResponseEntity<InventoryDto> getInventory(@PathVariable Long id){
         return new ResponseEntity<InventoryDto>(service.getInventory(id), HttpStatus.OK);
     }
 
-    //Get an inventory by playerId -- DONE
+    //Get an inventory by playerId
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.GET)
     public ResponseEntity<List<InventoryDto>> getInventoryByPlayerID(@PathVariable Long playerId){
         return new ResponseEntity<List<InventoryDto>>(service.getInventoryByPlayerId(playerId), HttpStatus.OK);
     }
 
 
-    //Delete a singular inventory by id
+    //Delete an inventory by id
     @RequestMapping(value = "inventories/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<InventoryDto> deleteInventory(@PathVariable Long id){
         return new ResponseEntity<InventoryDto>(service.deleteInventory(id), HttpStatus.ACCEPTED);
     }
 
-    //Delete an inventory by playerId -- DONE
+    //Delete an inventory by playerId
     @RequestMapping(value = "inventories/playerid/{playerId}", method = RequestMethod.DELETE)
     public ResponseEntity<List<InventoryDto>> deleteInventoryByPlayerId(@PathVariable Long playerId){
         return new ResponseEntity<List<InventoryDto>>(service.deleteInventoryByPlayerId(playerId), HttpStatus.ACCEPTED);

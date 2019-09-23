@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class InventoryService {
+public class InventoryService implements InventoryServiceInterface {
 
     @Autowired
     private InventoryRepository repository;
@@ -19,6 +19,7 @@ public class InventoryService {
         List<Inventory> inventories = repository.findAll();
         List<InventoryDto> inventoriesDto = new ArrayList<InventoryDto>();
 
+        //For each inventory found, add to InventoriesDto
         inventories.forEach(inventory -> inventoriesDto.add(new InventoryDto(inventory)));
 
         return inventoriesDto;
@@ -28,6 +29,7 @@ public class InventoryService {
         inventoryDto.setId(null);
         Inventory inventory = Inventory.createInventory();
 
+        //Set all inventory record values to those provided (Excluding id which auto increments)
         inventory.setCopperPiece(inventoryDto.getCopperPiece());
         inventory.setSilverPiece(inventoryDto.getSilverPiece());
         inventory.setGoldPiece(inventoryDto.getGoldPiece());
@@ -47,6 +49,7 @@ public class InventoryService {
         List<Inventory> inventories = repository.findAll();
         List<InventoryDto> inventoriesDto = new ArrayList<InventoryDto>();
 
+        //For each inventory that matches the playerId add this to inventoriesDto
         inventories.stream().filter(inventory -> inventory.getPlayerId() == playerId).forEach(inventory -> inventoriesDto.add(new InventoryDto(inventory)));
 
         return inventoriesDto;
@@ -65,6 +68,7 @@ public class InventoryService {
         List<Inventory> inventories = repository.findAll();
         List<InventoryDto> inventoriesDto = new ArrayList<InventoryDto>();
 
+        //Where the playerId given matches a record, add this to inventoriesDto then delete it
         inventories.stream().filter(inventory -> inventory.getPlayerId() == playerId).forEach(inventory -> {
             inventoriesDto.add(new InventoryDto(inventory));
             repository.deleteById(inventory.getId());
@@ -76,6 +80,7 @@ public class InventoryService {
     public InventoryDto updateInventory(Long id, InventoryDto inventoryDto){
         Inventory inventory = repository.getOne(id);
 
+        //Update all values except id and playerId with the new values given
         inventory.setCopperPiece(inventoryDto.getCopperPiece());
         inventory.setSilverPiece(inventoryDto.getSilverPiece());
         inventory.setGoldPiece(inventoryDto.getGoldPiece());
@@ -91,6 +96,7 @@ public class InventoryService {
         List<Inventory> inventories = repository.findAll();
         List<InventoryDto> inventoriesDto = new ArrayList<InventoryDto>();
 
+        //Where inventories match the given player id , update all information with the info given (Excluding id and playerId)
         inventories.stream().filter(inventory -> inventory.getPlayerId() == playerId).forEach(inventory -> {
             inventory.setCopperPiece(inventoryDto.getCopperPiece());
             inventory.setSilverPiece(inventoryDto.getSilverPiece());

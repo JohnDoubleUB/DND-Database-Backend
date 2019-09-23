@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PlayerCharacterService {
+public class PlayerCharacterService implements PlayerCharacterServiceInterface {
 
     @Autowired
     private PlayerCharacterRepository repository;
@@ -29,6 +29,7 @@ public class PlayerCharacterService {
         playerCharacterDto.setId(null);
         PlayerCharacter playerCharacter = PlayerCharacter.createPlayerCharacter();
 
+        //Excluding id set all the playerCharacter attributes to that of the information given
         playerCharacter.setName(playerCharacterDto.getName());
         playerCharacter.setRace(playerCharacterDto.getRace());
         playerCharacter.setPlayerClass(playerCharacterDto.getPlayerClass());
@@ -47,7 +48,7 @@ public class PlayerCharacterService {
         return new PlayerCharacterDto(repository.saveAndFlush(playerCharacter));
     }
 
-    //Tested
+
     public PlayerCharacterDto getCharacter(Long id){
         PlayerCharacter playerCharacter = repository.getOne(id);
         return new PlayerCharacterDto(playerCharacter);
@@ -63,6 +64,7 @@ public class PlayerCharacterService {
     public PlayerCharacterDto updateCharacter(Long id, PlayerCharacterDto playerCharacterDto){
         PlayerCharacter playerCharacter = repository.getOne(id);
 
+        //Excluding id, set the given id record values to that of the information provided
         playerCharacter.setName(playerCharacterDto.getName());
         playerCharacter.setRace(playerCharacterDto.getRace());
         playerCharacter.setPlayerClass(playerCharacterDto.getPlayerClass());

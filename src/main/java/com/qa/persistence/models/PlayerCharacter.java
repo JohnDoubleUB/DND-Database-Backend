@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PlayerCharacters")
-public class PlayerCharacter {
+public class PlayerCharacter implements PlayerCharacterInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -55,10 +55,6 @@ public class PlayerCharacter {
     public Long getId() {
         return id;
     }
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getName() {
         return name;
