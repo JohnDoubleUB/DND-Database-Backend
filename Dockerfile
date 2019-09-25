@@ -1,6 +1,3 @@
-FROM maven as build
-WORKDIR /build
-COPY . .
-RUN mvn package -Dmaven.test.skip=true
-CMD mvn spring-boot:run
-EXPOSE 9000
+FROM java:8-jdk-alpine
+COPY ./target/dnd-database-0.0.1.jar /usr/app/
+ENTRYPOINT ["java","-jar","usr/app/dnd-database-0.0.1.jar"]
