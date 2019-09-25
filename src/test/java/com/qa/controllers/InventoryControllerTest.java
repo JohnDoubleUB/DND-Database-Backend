@@ -1,7 +1,6 @@
 package com.qa.controllers;
 
 import com.qa.dto.InventoryDto;
-import com.qa.dto.PlayerCharacterDto;
 import com.qa.service.InventoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
