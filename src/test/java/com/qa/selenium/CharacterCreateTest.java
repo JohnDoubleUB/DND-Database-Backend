@@ -35,13 +35,16 @@ public class CharacterCreateTest {
     @Before
     public void setUp(){
         System.setProperty(SeleniumConst.DRIVER_KEY, SeleniumConst.DRIVER_LOCATION);
+
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
+
+
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
 
         driver.get(SeleniumConst.HOMEPAGE_URL+"create-edit-character.html");
-//        driver = new ChromeDriver();
-//        driver.manage().window().maximize();
     }
 
     @After
